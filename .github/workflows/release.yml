@@ -10,6 +10,7 @@ on:
       - 'README.md'
       - 'CHANGELOG.md'
       - 'tests/**'
+      - 'build_icons.py'
       - '.github/workflows/release.yml'
   workflow_dispatch:
 
@@ -22,15 +23,23 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
-      - name: Prepare module ZIP
+      - name: Build vector icons and run regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 build_icons.py
+          node --check scripts/main.js
+          node tests/smoke.cjs
+      - name: Prepare complete Foundry module ZIP
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p dist/wod20-combat-library
           cp module.json README.md CHANGELOG.md dist/wod20-combat-library/
-          cp -r scripts data tests dist/wod20-combat-library/
+          cp -r scripts data tests assets dist/wod20-combat-library/
           (cd dist && zip -qr ../wod20-combat-library.zip wod20-combat-library)
           unzip -t wod20-combat-library.zip >/dev/null
+          test "$(unzip -Z1 wod20-combat-library.zip | grep -c 'assets/icons/.*\.svg$')" -eq 69
       - name: Publish GitHub release
         shell: bash
         env:
@@ -45,5 +54,5 @@ jobs:
             gh release create "$TAG" wod20-combat-library.zip \
               --target "$GITHUB_SHA" \
               --title "WoD20 Combat Library ${TAG}" \
-              --notes "Native WoD20 natural weapons fix, protected compendium upgrade, and preserved combat references. See CHANGELOG.md for details. Live Foundry testing remains pending."
+              --notes "Adds 69 bundled SVG icons mapped to all 142 entries, including icon-only updates for matching World Items. No actor inventory changes. See CHANGELOG.md; live Foundry testing pending."
           fi

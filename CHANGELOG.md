@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.2 — 2026-10-15
+
+- Added 69 original, bundled SVG pictograms. All 142 catalog entries map to 65 distinct context-sensitive icons for natural attacks, martial techniques, Akashic Do, weapon classes, unusual equipment, and rules references. No remote assets, fonts, or creator-licensed images are required.
+- GM-approved update refreshes compendium Item icons using stable module keys, preserving Item IDs and types. For existing v0.2.1 Items, the update is icon-only and preserves customized statistics, descriptions, names, and folders.
+- The same update now refreshes eligible existing **World Items** copied from the library, but only where a module-managed key is present and the image is still a default or managed icon. Custom artwork, unrelated Items, and Actor-owned copies are not modified.
+- Retained the safe 0.2.0 to 0.2.1 natural-weapon upgrade for worlds skipping a release. No automatic mass import or duplicate world folders.
+- Expanded automated coverage of all mappings, icon file existence, the v0.2.1 in-place icon upgrade, selective World Item icon sync, and custom image preservation. Static/simulation tests passed; **live Foundry v14 testing is pending**.
+- After replacing the module directory, restart Foundry and press **Ctrl+Shift+R**; approve the update as GM. Make module and world backups before updating.
+
 ## 0.2.1 — 2026-10-15
 
 - Fixed Punch, Kick, Bite, and Claw: now generated as native WoD20 `Melee Weapon` Items with `isnatural: true` and rollable attack/damage fields instead of unrollable reference Features.

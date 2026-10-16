@@ -1,6 +1,18 @@
-# WoD20 Combat Library v0.2.1
+# WoD20 Combat Library v0.2.2
 
 A separate, reusable combat compendium for **Foundry VTT 13/14** and the **World of Darkness 20th** system. It does not modify the Mage Charamancer or place items in the ordinary world Items directory.
+
+## Illustrated Combat Library (v0.2.2)
+
+Every one of the 142 catalog entries now has a bundled SVG icon instead of a generic paper/pencil, sword, or target thumbnail. **69 SVG files provide 65 context-specific visual identities**, including natural attacks, punches and kicks, grappling, throws, blocking, counters, martial arts, Do techniques, training, melee weapon classes, firearms, Technocracy equipment, bows, military equipment, thrown weapons and rules references. The assets are contained in `assets/icons` and require no third-party service, fonts or remote image loading.
+
+**Upgrading an existing compendium:** The GM-approved installer uses stable module keys and updates images in place. For a v0.2.1 entry, it changes only its image and module-owned version/icon flags, not its name, type, custom description, attack/damage statistics or folder. User-selected custom images are preserved. The module ID, pack ID, source catalog and permissions are unchanged.
+
+**Previously imported World Items are included:** Many users copied library Items into `Items > WoD20 Combat Library`. These are independent from the source compendium. During the *same GM-approved update*, the module refreshes only images of **existing World Items carrying this module's source `flags.wod20-combat-library.key`**, and only if their icon is a known original generic icon or a previous module-managed icon. The World Items' IDs, type, systems, descriptions, ownership, folders and other flags are untouched. It will **not** change arbitrary unrelated Items with matching names, hand-chosen icons, or any Actor's inventory Items. It will **not** import duplicate world items. World Items with no module key are deliberately skipped to avoid changing player-created data.
+
+Reference maneuvers and special-effect equipment that cannot be accurately represented as native attack Items remain `Feature` Items; new artwork does *not* change their mechanics or make them rollable weapons.
+
+To update: back up the Foundry world and module directory; replace the module; restart Foundry, **Ctrl+Shift+R**; log in as GM and approve **Update WoD20 Combat Library**. Verify one reference maneuver and one natural weapon in the Compendium Packs and World Items directory. Already-equipped character copies are unchanged.
 
 ## Contents
 
@@ -58,14 +70,14 @@ This is an **Item compendium**, not a public editable world folder. On first ins
 
 Item ownership is also set explicitly by user ID to account for existing players. This lets players search, inspect, and drag **copies** onto characters they control, but not edit the shared originals. New compendiums are locked against accidental changes. If a previously created pack was unlocked before the upgrade, that lock preference is preserved.
 
-Only items with this module's own managed flags are updated. If the target compendium contains unmanaged Items, the installer refuses to change the pack rather than exposing private content. **No ownership on existing actors, actor-embedded Items, world Items, or other compendiums is changed.**
+Only items with this module's own managed flags are updated. If the target compendium contains unmanaged Items, the installer refuses to change the pack rather than exposing private content. **No ownership on existing actors, actor-embedded Items, world Items, or other compendiums is changed.** In v0.2.2, qualifying existing World Items have only their `img` field updated.
 
 ## Install or upgrade
 
 1. Unzip `wod20-combat-library` directly under your Foundry `Data/modules` directory. If upgrading, replace that directory entirely.
-2. Restart Foundry and verify the module is enabled at **Game Settings > Manage Modules**.
+2. Restart Foundry, press **Ctrl+Shift+R** to hard-refresh the browser, and verify the module is enabled at **Game Settings > Manage Modules**.
 3. Back up the **Foundry world**, including the world Combat Library compendium, before updating v0.2.0.
-4. Log in as **GM**; approve **Create / Update WoD20 Combat Library** when prompted.
+4. Log in as **GM**; approve **Create / Update WoD20 Combat Library** when prompted. The icon refresh also covers eligible existing World Items with the module key; it never changes Actor-owned items.
 5. Open **Compendium Packs > WoD20 Combat Library**. Players should see a read-only collection with draggable Items.
 6. Test by dragging **Punch** (Natural Weapons) and **Hatchet** (Melee Weapons) onto a **controlled/unlocked** WoD20 Actor sheet. Confirm each appears under Combat and can roll an attack.
 7. If either fails, verify the character sheet is editable and the player owns the Actor. Capture any browser-console error: the offline tests cannot exercise live drag-and-drop.
