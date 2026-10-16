@@ -1,0 +1,49 @@
+name: Publish Foundry module release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'module.json'
+      - 'scripts/**'
+      - 'data/**'
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'tests/**'
+      - '.github/workflows/release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Prepare module ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist/wod20-combat-library
+          cp module.json README.md CHANGELOG.md dist/wod20-combat-library/
+          cp -r scripts data tests dist/wod20-combat-library/
+          (cd dist && zip -qr ../wod20-combat-library.zip wod20-combat-library)
+          unzip -t wod20-combat-library.zip >/dev/null
+      - name: Publish GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          VERSION=$(python3 -c 'import json; print(json.load(open("module.json"))["version"])')
+          TAG="v${VERSION}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" wod20-combat-library.zip --clobber
+          else
+            gh release create "$TAG" wod20-combat-library.zip \
+              --target "$GITHUB_SHA" \
+              --title "WoD20 Combat Library ${TAG}" \
+              --notes "Native WoD20 natural weapons fix, protected compendium upgrade, and preserved combat references. See CHANGELOG.md for details. Live Foundry testing remains pending."
+          fi
