@@ -1,11 +1,11 @@
 /**
- * WoD20 Combat Library 0.2.3
+ * WoD20 Combat Library 0.2.4
  * GM-approved, repeat-safe upgrade of Item compendium and matching World Item icons.
  * Source data in moves.json and weapons.json; stable keys permit safe updates.
  * Only module-managed World Item icons are refreshed; actor items are never modified.
  */
 const MOD = "wod20-combat-library";
-const VERSION = "0.2.3";
+const VERSION = "0.2.4";
 const PACK_NAME = "wod20-combat-library";
 const PACK_ID = `world.${PACK_NAME}`;
 const ACCESS = Object.freeze({
@@ -24,7 +24,15 @@ const GROUPS = [
 ];
 const CHUNK = 25;
 const ICON_DIR = `modules/${MOD}/assets/icons`;
-const DEFAULT_ICONS = new Set(["icons/svg/book.svg", "icons/svg/target.svg", "icons/svg/sword.svg"]);
+// Built-in Foundry defaults and real WoD20 defaults, verified against the
+// worldofdarkness item image helper. Only this exact whitelist is replaceable.
+const DEFAULT_ICONS = new Set([
+  "icons/svg/book.svg", "icons/svg/target.svg", "icons/svg/sword.svg",
+  "systems/worldofdarkness/assets/img/items/feature.svg",
+  "systems/worldofdarkness/assets/img/items/naturalweapons.svg",
+  "systems/worldofdarkness/assets/img/items/meleeweapons.svg",
+  "systems/worldofdarkness/assets/img/items/rangedweapons.svg"
+]);
 let catalogEntries = [];
 let iconMap = null;
 let inProgress = false;
@@ -243,9 +251,12 @@ function iconFor(e) {
 }
 function canReplaceIcon(item) {
   const current = String(item.img || "");
+  const normalized = current.replace(/^\/+/, "").split(/[?#]/)[0];
   const previous = item.getFlag?.(MOD, "iconPath");
-  // Never replace someone's custom artwork, including custom artwork on an imported world Item.
-  return !current || DEFAULT_ICONS.has(current) || current.startsWith(`${ICON_DIR}/`) || (previous && current === previous);
+  // Whitelisted defaults and our own module icon paths are safe; arbitrary images
+  // (including user-chosen artwork from the system folder) remain protected.
+  return !current || DEFAULT_ICONS.has(normalized) || normalized.startsWith(`${ICON_DIR}/`) ||
+    (previous && normalized === String(previous).replace(/^\/+/, "").split(/[?#]/)[0]);
 }
 // Guard against modified names, misplaced documents, and the common case where a
 // GM used Foundry Import All and lost the source module flags. For unflagged docs
@@ -253,18 +264,22 @@ function canReplaceIcon(item) {
 function worldFolderChain(item) {
   const chain = [];
   const seen = new Set();
-  let folder = item.folder;
-  for (let depth = 0; folder && depth < 12; depth++) {
+  let folder = item.folder || item._source?.folder || null;
+  // Resolve native Foundry Folder documents, folder IDs and parent links; a
+  // nested folder's raw `folder` field can be an ID rather than a Folder doc.
+  for (let depth = 0; folder && depth < 16; depth++) {
     if (typeof folder === "string") folder = game.folders?.get?.(folder);
-    if (!folder || !folder.name || seen.has(folder.id || folder._id)) break;
-    seen.add(folder.id || folder._id);
+    if (!folder?.name) break;
+    const id = folder.id || folder._id;
+    if (id && seen.has(id)) break;
+    if (id) seen.add(id);
     chain.push(folder.name);
-    folder = folder.folder || folder.parent || null;
+    folder = folder.folder || folder.parent || folder._source?.folder || null;
   }
   return chain;
 }
 function worldIconPreview() {
-  if (!iconMap || !catalogEntries.length) return {eligible: [], custom: 0, flagged: 0, folder: 0};
+  if (!iconMap || !catalogEntries.length) return {eligible: [], custom: 0, flagged: 0, folder: 0, alreadyCurrent: 0, located: 0};
   const byKey = new Map(catalogEntries.map(entry => [entry.key, entry]));
   const byNameCategory = new Map();
   for (const entry of catalogEntries) {
@@ -273,7 +288,7 @@ function worldIconPreview() {
     else byNameCategory.set(composite, entry);
   }
   const eligible = [];
-  let custom = 0, flagged = 0, folder = 0;
+  let custom = 0, flagged = 0, folder = 0, alreadyCurrent = 0, located = 0;
   for (const item of game.items?.contents || []) {
     const sourceKey = item.getFlag?.(MOD, "key");
     let entry = byKey.get(sourceKey);
@@ -286,14 +301,15 @@ function worldIconPreview() {
       if (!entry || toItem(entry).type !== item.type) continue;
       method = "folder";
     }
+    located++;
     if (!canReplaceIcon(item)) { custom++; continue; }
     const img = iconFor(entry);
-    if (item.img === img) continue;
+    if (item.img === img) { alreadyCurrent++; continue; }
     eligible.push({item, img, method});
     if (method === "flag") flagged++;
     else folder++;
   }
-  return {eligible, custom, flagged, folder};
+  return {eligible, custom, flagged, folder, alreadyCurrent, located};
 }
 async function updateWorldIcons(preview = worldIconPreview()) {
   const changes = preview.eligible.map(({item, img}) => ({_id: item.id, img}));
@@ -387,7 +403,7 @@ async function install({force = false} = {}) {
           if (old.type !== desired.type) {
             retype.push({old, desired});
           } else if (force || old.getFlag(MOD, "version") !== VERSION) {
-            if (["0.2.1", "0.2.2", "0.2.3"].includes(old.getFlag(MOD, "version"))) {
+            if (["0.2.1", "0.2.2", "0.2.3", "0.2.4"].includes(old.getFlag(MOD, "version"))) {
               // Icon-only upgrade. Do not overwrite previously customized stats,
               // descriptions, names, folders, or ownership on version 0.2.1 Items.
               change.push({
@@ -484,7 +500,7 @@ async function install({force = false} = {}) {
     // This is a GM-confirmed, repeat-safe and non-destructive icon-only operation.
     const worldIconsUpdated = await updateWorldIcons();
     await game.settings.set(MOD, "installedVersion", VERSION);
-    report(`Ready: ${catalog.entries.length} combat entries (${added} created, ${updated} compendium updated; ${worldIconsUpdated} World Item icons refreshed).`);
+    report(`Ready: ${catalog.entries.length} combat entries (${added} created, ${updated} compendium updated; ${worldIconsUpdated} World Item icons refreshed). If your World Item count is unexpectedly zero, inspect the preview and the folder structure.`, "info");
     return {count: catalog.entries.length, added, updated, worldIconsUpdated, collection};
   } catch (error) {
     console.error(`${MOD} | Installation failed`, error);
@@ -511,10 +527,11 @@ async function promptInstall(force = false) {
       `The pack will be locked against accidental edits on first install.</p>`+
       `<p>Only Items previously generated by this module will be updated. Actor items, unrelated packs, `+
       `and the Charamancer starter-content folder are not changed.</p>`+
-      `<p><strong>v0.2.3 Game-Icons.net artwork:</strong> 142 entries use recognizable illustrated icons. `+
+      `<p><strong>v0.2.4 World Item icon repair:</strong> 142 entries use recognizable illustrated icons. `+
       `${matchingWorldItems} World Items can receive an icon-only refresh `+
       `(${worldPreview.flagged} source-flag matches; ${worldPreview.folder} exact Combat Library folder/name/type matches). `+
-      `${worldPreview.custom} recognized World Items have custom artwork and will be skipped. `+
+      `${worldPreview.custom} recognized World Items have custom artwork and will be skipped; `+
+      `${worldPreview.alreadyCurrent} already have the latest icon. `+
       `A backup of previous World Item icons is stored before changes. `+
       `Actor inventory, Item mechanics, IDs, folders and unrelated Items are not modified.</p>`+
       `<p><strong>Earlier v0.2.1 fix retained:</strong> Converts Punch, Kick, Bite, and Claw from reference-only Features `+

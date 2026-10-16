@@ -52,5 +52,5 @@ jobs:
             gh release create "$TAG" wod20-combat-library.zip \
               --target "$GITHUB_SHA" \
               --title "WoD20 Combat Library ${TAG}" \
-              --notes "Replaces ambiguous icons with attributed Game-Icons.net artwork and safely refreshes matching World Item icons. See CHANGELOG.md. Live Foundry v14 verification pending."
+              --notes "Fixes World Item icon refresh for WoD20 default images and nested folders; preserves IDs and custom artwork. See CHANGELOG.md. Live Foundry v14 verification pending."
           fi

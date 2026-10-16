@@ -1,3 +1,9 @@
+## v0.2.4 — World Item icon repair
+
+When the compendium icon set updates but World Items retain default paper-and-pencil/fist/weapon art, v0.2.4 recognizes the native WoD20 placeholder images (as well as Foundry defaults and older module icons). The GM update dialog previews eligible World Items, custom-art exclusions and already-current images. It preserves the exact ID, type, folder, descriptions and statistics of every World Item; no actor-owned equipment is changed. A backup of previous World Item image paths is stored before updates.
+
+**Upgrade:** Back up the world, update the module with Foundry **Update All**, restart Foundry if needed, hard-refresh **Ctrl+Shift+R**, and as GM accept **Update WoD20 Combat Library**. If the dialog reports zero eligible World Items despite old artwork, do not delete/reimport; use the exposed `previewWorldIcons()` diagnostic so folder/flag mismatches can be identified safely.
+
 # WoD20 Combat Library v0.2.3
 
 A separate, reusable combat compendium for **Foundry VTT 13/14** and the **World of Darkness 20th** system. Updates from GitHub through Foundry's **Update All** and maintains a separate, player-readable Item compendium. Nothing is automatically added to characters.

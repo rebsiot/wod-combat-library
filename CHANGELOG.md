@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.4 — 2026-10-15
+
+- Recognize the WoD20 default `feature.svg`, `naturalweapons.svg`, `meleeweapons.svg`, and `rangedweapons.svg` images as replaceable during World Item icon migration; the previous list only recognized core Foundry placeholder SVGs.
+- Improve folder traversal when parent folders are represented by Foundry IDs, preserving exact Combat Library root, category, name and type checks for unflagged imports.
+- Show the number of already-current World Items separately from eligible updates and custom-art exclusions. Change only `img`; preserve IDs, flags, other content, actor-owned Items and user artwork.
+- Reuse the existing GM confirmation and rolling World Item icon backup. Repeat-safe tests include actual WoD20 default art and nested folder IDs.
+- Automated tests only; live Foundry v14 verification pending.
+
 ## 0.2.3 — 2026-10-15
 
 - Replaced the confusing v0.2.2 pictograms with **116 recognizable images from the user-provided Game-Icons.net SVG collection**, assigned across all 142 entries. Curbstomp is a boot sole stamping; Head Butt is a head-impact mark; holds use handcuffs/grab, throws use a person throwing; melee weapons have actual axe/sword/knife/club/chain silhouettes. The files are bundled locally; no network images are needed.
