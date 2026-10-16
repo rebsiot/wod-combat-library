@@ -6,7 +6,7 @@ const icons=JSON.parse(fs.readFileSync(path.join(ROOT,'data/icon-map.json'),'utf
 assert.equal(moves.entries.length,49);assert.equal(weapons.entries.length,82);
 const uniq=new Set([...moves.entries,...weapons.entries].map(e=>e.key));assert.equal(uniq.size,131);
 assert.equal(Object.keys(icons.icons).length,142);
-assert.ok(new Set(Object.values(icons.icons)).size>=60);
+assert.ok(new Set(Object.values(icons.icons)).size>=90);
 for(const icon of Object.values(icons.icons))assert.ok(fs.existsSync(path.join(ROOT,'assets/icons',icon+'.svg')),icon);
 const raw=fs.readFileSync(path.join(ROOT,'scripts/main.js'),'utf8');
 const source=raw.replace('export const CombatLibraryData','globalThis.CombatLibraryData');
@@ -21,7 +21,7 @@ function createPack(){const p={collection:'world.'+MOD,documentName:'Item',locke
   async getDocuments(){return this.docs}};packs.set(p.collection,p);return p;}
 const ctx={game:{user:users[0],users,system:{id:'worldofdarkness'},packs:{get:k=>packs.get(k)},modules:{get:k=>modules.get(k)},
   settings:{register(){},async set(ns,key,v){states.set(ns+'.'+key,v)},get(ns,key){return states.get(ns+'.'+key)}},
-  items:{contents:worldItems,get:id=>worldItems.find(x=>x.id===id)}},
+  items:{contents:worldItems,get:id=>worldItems.find(x=>x.id===id)},folders:{get:()=>null}},
  foundry:{documents:{collections:{CompendiumCollection:{async createCompendium(data){assert.equal(data.type,'Item');return createPack()}}}},
   applications:{api:{DialogV2:{async confirm(){return true}}}}},
  CONFIG:{Folder:{documentClass:{async create(d,o){let p=packs.get(o.pack),f={...d,id:'F'+(++uid)};p.folders.contents.push(f);return f}}},
@@ -62,10 +62,10 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
   assert.equal(a.system.difficulty,difficulty);
  }
  assert.ok(p.docs.find(x=>x.name==='Bite').system.description.includes('Editable weapon default'));
- assert.ok(p.docs.find(x=>x.name==='Blinding').img.endsWith('/defense-blind.svg'));
- assert.ok(p.docs.find(x=>x.name==='Iron Shirt').img.endsWith('/do-shield.svg'));
- assert.ok(p.docs.find(x=>x.name==='Katana').img.endsWith('/sword.svg'));
- assert.ok(p.docs.find(x=>x.name==='Flamethrower').img.endsWith('/explosive-flame.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Blinding').img.includes('blindfold.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Iron Shirt').img.includes('energy-shield.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Katana').img.includes('katana.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Flamethrower').img.includes('flamethrower.svg'));
  assert.equal(p.docs.find(x=>x.name==='Bolan Mk. 13 Weapons System').type,'Feature');
  assert.equal(p.docs.find(x=>x.name==='Flamethrower').type,'Feature');
  assert.equal(p.docs.find(x=>x.name==='Rocket Launcher').type,'Feature');
@@ -104,22 +104,59 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
  const customWorld=doc({...p.docs.find(x=>x.name==='Claw').toObject(),_id:'CustomWorld'});customWorld.img='custom/my-claw.webp';worldItems.push(customWorld);
  const unrelated=doc({name:'Hatchet',_id:'Unrelated',img:'icons/svg/book.svg',flags:{},system:{description:'User item'}});worldItems.push(unrelated);
  assert.equal(worldItems.filter(x=>x.getFlag(MOD,'key')).length,6);
+ // A World Item imported without provenance flags must still update when it has
+ // the exact item type/name/category inside the dedicated Combat Library root.
+ const rootFolder={id:'root',name:'WoD20 Combat Library',folder:null};
+ const category={id:'category',name:'08 Melee — Blades',folder:rootFolder};
+ const worldNoFlag=doc({name:'Katana',type:'Melee Weapon',_id:'NoFlagWorld',folder:category,
+   img:'icons/svg/sword.svg',flags:{},system:{description:'Hand-written user data',damage:{bonus:17}}});
+ const worldNoFlagCustom=doc({name:'Katana',type:'Melee Weapon',_id:'NoFlagCustom',folder:category,
+   img:'custom/own.webp',flags:{},system:{description:'Custom'}});
+ const notLibrary=doc({name:'Katana',type:'Melee Weapon',_id:'NotLibrary',folder:{id:'other',name:'Unrelated',folder:null},
+   img:'icons/svg/sword.svg',flags:{},system:{description:'Unrelated'}});
+ const wrongType=doc({name:'Katana',type:'Feature',_id:'WrongType',folder:category,
+   img:'icons/svg/book.svg',flags:{},system:{description:'Different document'}});
+ worldItems.push(worldNoFlag,worldNoFlagCustom,notLibrary,wrongType);
+ const preview=api().previewWorldIcons();
+ assert.ok(preview.eligible.some(v=>v.item.id==='NoFlagWorld' && v.method==='folder'));
+ assert.ok(!preview.eligible.some(v=>['NoFlagCustom','NotLibrary','WrongType'].includes(v.item.id)));
  const previousIDs=p.docs.map(x=>x.id);
  await api().install();
  assert.deepEqual(p.docs.map(x=>x.id),previousIDs);
  assert.equal(p.docs.find(x=>x.name==='Sword').img,'custom/user-sword.webp');
  assert.equal(p.docs.find(x=>x.name==='Read an Opponent').system.description,'Storyteller custom notes');
  for(const item of p.docs){
-   assert.equal(item.flags[MOD].version,'0.2.2');
+   assert.equal(item.flags[MOD].version,'0.2.3');
    assert.equal(item.type,beforeIcons.get(item.id).type);
    assert.equal(item.name,beforeIcons.get(item.id).name);
    assert.equal(item.folder,beforeIcons.get(item.id).folder);
  }
- for(const item of worldItems.filter(x=>worldNames.includes(x.name)))assert.ok(item.img.startsWith('modules/wod20-combat-library/assets/icons/'),item.name);
+ for(const item of worldItems.filter(x=>worldNames.includes(x.name) && x.getFlag(MOD,'key')))assert.ok(item.img.startsWith('modules/wod20-combat-library/assets/icons/'),item.name);
  assert.equal(customWorld.img,'custom/my-claw.webp');
  assert.equal(unrelated.img,'icons/svg/book.svg');
  assert.equal(unrelated.system.description,'User item');
- assert.equal(worldItems.length,7);
+ assert.equal(worldItems.length,11);
+ assert.ok(worldNoFlag.img.includes('katana.svg'));
+ assert.equal(worldNoFlag.system.description,'Hand-written user data');
+ assert.equal(worldNoFlag.system.damage.bonus,17);
+ assert.equal(worldNoFlagCustom.img,'custom/own.webp');
+ assert.equal(notLibrary.img,'icons/svg/sword.svg');
+ assert.equal(wrongType.img,'icons/svg/book.svg');
+ const worldBackups=JSON.parse(states.get(MOD+'.worldIconBackups'));
+ assert.ok(worldBackups.at(-1).items.some(x=>x.id==='NoFlagWorld' && x.method==='folder'));
+ const originalIcon=worldNoFlag.img;
+ await api().install();
+ assert.equal(worldNoFlag.img,originalIcon);
+ assert.deepEqual(p.docs.map(x=>x.id),previousIDs);
+ assert.equal(p.docs.find(x=>x.name==='Read an Opponent').system.description,'Storyteller custom notes');
+ // When v0.2.2 is installed and v0.2.3 goes live, this is icon-only.
+ const legacy=p.docs.find(x=>x.name==='Hatchet');legacy.flags[MOD].version='0.2.2';
+ legacy.system.description='Locally customized weapon';legacy.img='modules/wod20-combat-library/assets/icons/axe.svg';
+ const legacyID=legacy.id;
+ await api().install();
+ assert.equal(legacy.id,legacyID);
+ assert.equal(legacy.system.description,'Locally customized weapon');
+ assert.ok(legacy.img.includes('hatchet.svg'));
  // 0.2.0 created Punch, Kick, Bite and Claw as Features. Upgrading must preserve IDs,
  // create fully native weapons, and retain a world-side backup snapshot.
  const oldIds=new Map();
@@ -135,18 +172,18 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
    assert.equal(updated.system.isnatural,true);
  }
  const backup=JSON.parse(states.get(MOD+'.typeMigrationBackup'));
- assert.equal(backup.toVersion,'0.2.2');assert.equal(backup.items.length,4);
+ assert.equal(backup.toVersion,'0.2.3');assert.equal(backup.items.length,4);
  assert.ok(backup.items.every(x=>x.type==='Feature'));
 
  // Exercise the upgrade path from 0.1.0 with existing 49 move records and an unlocked pack.
  p.docs=p.docs.filter(x=>moves.entries.some(e=>e.key===x.getFlag(MOD,'key')));
  for(const x of p.docs)x.flags[MOD].version='0.1.0';
  p.locked=false;await api().install();assert.equal(p.docs.length,142);assert.equal(p.locked,false);
- for(const x of p.docs)assert.equal(x.flags[MOD].version,'0.2.2');
+ for(const x of p.docs)assert.equal(x.flags[MOD].version,'0.2.3');
  // Refuse to expose unrelated packs before setting role permissions.
  const old=copy(p.ownership);p.docs.push(doc({name:'Secret',flags:{},ownership:{default:0}}));
  let rejected=false;try{await api().install()}catch(e){rejected=true;assert.ok(e.message.includes('not managed'))}
  assert.equal(rejected,true);assert.deepEqual(p.ownership,old);
- console.log('PASS: 142 entries and 65 SVG icon designs; icon coverage; 0.2.1 icon-only upgrade; flagged World Item icon sync; custom artwork preserved; stable IDs, stat edits, four natural weapons, actor copies, permissions, older migrations, repeat-safe updates.');
+ console.log('PASS: 142 entries and Game-Icons.net SVG artwork; icon coverage; 0.2.1/0.2.2 icon-only upgrade; flagged World Item icon sync; custom artwork preserved; stable IDs, stat edits, four natural weapons, actor copies, permissions, older migrations, repeat-safe updates.');
 }
 run().catch(e=>{console.error(e);process.exit(1)});

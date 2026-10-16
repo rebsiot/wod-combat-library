@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.3 — 2026-10-15
+
+- Replaced the confusing v0.2.2 pictograms with **116 recognizable images from the user-provided Game-Icons.net SVG collection**, assigned across all 142 entries. Curbstomp is a boot sole stamping; Head Butt is a head-impact mark; holds use handcuffs/grab, throws use a person throwing; melee weapons have actual axe/sword/knife/club/chain silhouettes. The files are bundled locally; no network images are needed.
+- Included `THIRD_PARTY_ICONS.md` with per-icon author credit and the source archive's CC BY 3.0 / CC0 notes.
+- Fixed previously imported **World Items** that were missed by the 0.2.2 icon update. In addition to matching the source module key, recognizes unflagged copies only when their *name, Item type, exact category folder, and `WoD20 Combat Library` ancestor folder* all match a catalog entry. Only the image field is changed; unknown folders, name collisions, custom artwork, and Actor-owned items are skipped.
+- GM update confirmation displays eligible counts by matching method and number skipped for custom art. Stores a rolling (five latest) World Item image backup under the world setting `wod20-combat-library.worldIconBackups` before any World Item changes.
+- Compendium upgrades from v0.2.1 or v0.2.2 change only icon and module version/icon flags, preserving customized fields and IDs; retained the earlier v0.2.0 Feature-to-natural-weapon migration.
+- Automated tests: 142 complete mappings, 116 built SVGs and valid paths, pre-0.2.3 upgrade, exact-folder fallback, custom artwork exclusions, unchanged Actor Items and weapon data, repeat-safe writes, and permissions. **Live Foundry verification pending.**
+- Foundry: update the module via **Update All**, hard-refresh with **Ctrl+Shift+R**, enter as GM, and approve the Combat Library update after backing up the world. Do not delete/reimport World Items for this artwork change.
+
 ## 0.2.2 — 2026-10-15
 
 - Added 69 original, bundled SVG pictograms. All 142 catalog entries map to 65 distinct context-sensitive icons for natural attacks, martial techniques, Akashic Do, weapon classes, unusual equipment, and rules references. No remote assets, fonts, or creator-licensed images are required.

@@ -1,11 +1,11 @@
 /**
- * WoD20 Combat Library 0.2.2
+ * WoD20 Combat Library 0.2.3
  * GM-approved, repeat-safe upgrade of Item compendium and matching World Item icons.
  * Source data in moves.json and weapons.json; stable keys permit safe updates.
  * Only module-managed World Item icons are refreshed; actor items are never modified.
  */
 const MOD = "wod20-combat-library";
-const VERSION = "0.2.2";
+const VERSION = "0.2.3";
 const PACK_NAME = "wod20-combat-library";
 const PACK_ID = `world.${PACK_NAME}`;
 const ACCESS = Object.freeze({
@@ -25,6 +25,7 @@ const GROUPS = [
 const CHUNK = 25;
 const ICON_DIR = `modules/${MOD}/assets/icons`;
 const DEFAULT_ICONS = new Set(["icons/svg/book.svg", "icons/svg/target.svg", "icons/svg/sword.svg"]);
+let catalogEntries = [];
 let iconMap = null;
 let inProgress = false;
 
@@ -78,6 +79,7 @@ async function loadCatalog() {
     }
   }
   iconMap = mapped;
+  catalogEntries = entries;
   return {entries};
 }
 function additionalEntries() {
@@ -245,20 +247,68 @@ function canReplaceIcon(item) {
   // Never replace someone's custom artwork, including custom artwork on an imported world Item.
   return !current || DEFAULT_ICONS.has(current) || current.startsWith(`${ICON_DIR}/`) || (previous && current === previous);
 }
-function getWorldIconCandidates() {
-  const mapped = new Set(Object.keys(iconMap || {}));
-  return (game.items?.contents || []).filter(item =>
-    mapped.has(item.getFlag?.(MOD, "key")) && canReplaceIcon(item));
+// Guard against modified names, misplaced documents, and the common case where a
+// GM used Foundry Import All and lost the source module flags. For unflagged docs
+// an exact Item name, native type, category folder and library root are mandatory.
+function worldFolderChain(item) {
+  const chain = [];
+  const seen = new Set();
+  let folder = item.folder;
+  for (let depth = 0; folder && depth < 12; depth++) {
+    if (typeof folder === "string") folder = game.folders?.get?.(folder);
+    if (!folder || !folder.name || seen.has(folder.id || folder._id)) break;
+    seen.add(folder.id || folder._id);
+    chain.push(folder.name);
+    folder = folder.folder || folder.parent || null;
+  }
+  return chain;
 }
-async function updateWorldIcons() {
-  // No mass import. Only existing world Items bearing this module's own key and a
-  // default/managed image are eligible. Actor-owned copies and customized art are untouched.
-  const eligible = getWorldIconCandidates();
-  const changes = eligible.map(item => {
-    const name = iconMap[item.getFlag(MOD, "key")];
-    const img = `${ICON_DIR}/${name}.svg`;
-    return { _id: item.id, img };
-  }).filter(change => (game.items?.get?.(change._id)?.img ?? eligible.find(x=>x.id===change._id)?.img) !== change.img);
+function worldIconPreview() {
+  if (!iconMap || !catalogEntries.length) return {eligible: [], custom: 0, flagged: 0, folder: 0};
+  const byKey = new Map(catalogEntries.map(entry => [entry.key, entry]));
+  const byNameCategory = new Map();
+  for (const entry of catalogEntries) {
+    const composite = `${entry.category}\0${entry.name}`;
+    if (byNameCategory.has(composite)) byNameCategory.set(composite, null);
+    else byNameCategory.set(composite, entry);
+  }
+  const eligible = [];
+  let custom = 0, flagged = 0, folder = 0;
+  for (const item of game.items?.contents || []) {
+    const sourceKey = item.getFlag?.(MOD, "key");
+    let entry = byKey.get(sourceKey);
+    let method = "flag";
+    if (!entry) {
+      const path = worldFolderChain(item);
+      if (path.length < 2 || !path.includes("WoD20 Combat Library")) continue;
+      // Only the immediate first folder can act as a category proof.
+      entry = byNameCategory.get(`${path[0]}\0${item.name}`);
+      if (!entry || toItem(entry).type !== item.type) continue;
+      method = "folder";
+    }
+    if (!canReplaceIcon(item)) { custom++; continue; }
+    const img = iconFor(entry);
+    if (item.img === img) continue;
+    eligible.push({item, img, method});
+    if (method === "flag") flagged++;
+    else folder++;
+  }
+  return {eligible, custom, flagged, folder};
+}
+async function updateWorldIcons(preview = worldIconPreview()) {
+  const changes = preview.eligible.map(({item, img}) => ({_id: item.id, img}));
+  if (!changes.length) return 0;
+  // Make restoration of these icon-only world edits possible without changing
+  // the IDs, folders, flags, mechanics, or actor-owned copies.
+  const rawHistory = game.settings.get(MOD, "worldIconBackups") || "";
+  let history = [];
+  try { history = rawHistory ? (JSON.parse(rawHistory) || []) : []; }
+  catch (_) { throw new Error("World icon backup data is invalid. No World Items changed."); }
+  if (!Array.isArray(history)) throw new Error("World icon backup data is invalid. No World Items changed.");
+  history.push({version:VERSION, date:new Date().toISOString(), items:preview.eligible.map(({item,method}) => ({
+    id:item.id, name:item.name, previousImage:item.img, method
+  }))});
+  await game.settings.set(MOD, "worldIconBackups", JSON.stringify(history.slice(-5)));
   let updated = 0;
   for (let i = 0; i < changes.length; i += CHUNK) {
     const result = await CONFIG.Item.documentClass.updateDocuments(changes.slice(i,i+CHUNK));
@@ -337,7 +387,7 @@ async function install({force = false} = {}) {
           if (old.type !== desired.type) {
             retype.push({old, desired});
           } else if (force || old.getFlag(MOD, "version") !== VERSION) {
-            if (old.getFlag(MOD, "version") === "0.2.1") {
+            if (["0.2.1", "0.2.2", "0.2.3"].includes(old.getFlag(MOD, "version"))) {
               // Icon-only upgrade. Do not overwrite previously customized stats,
               // descriptions, names, folders, or ownership on version 0.2.1 Items.
               change.push({
@@ -451,7 +501,8 @@ async function promptInstall(force = false) {
   // Icon map is loaded for the prompt without altering the world.
   try { await loadCatalog(); }
   catch (err) { console.error(`${MOD} | Catalog validation failed`, err); report(`Catalog validation failed: ${err.message}`, "error"); return; }
-  const matchingWorldItems = getWorldIconCandidates().length;
+  const worldPreview = worldIconPreview();
+  const matchingWorldItems = worldPreview.eligible.length;
   const yes = await foundry.applications.api.DialogV2.confirm({
     window: {title: existing ? "Update WoD20 Combat Library" : "Create WoD20 Combat Library"},
     content: `<p>${existing ? "Update" : "Create"} a separate <strong>WoD20 Combat Library</strong> Item compendium?</p>` +
@@ -460,9 +511,12 @@ async function promptInstall(force = false) {
       `The pack will be locked against accidental edits on first install.</p>`+
       `<p>Only Items previously generated by this module will be updated. Actor items, unrelated packs, `+
       `and the Charamancer starter-content folder are not changed.</p>`+
-      `<p><strong>v0.2.2 icon artwork:</strong> Every catalog entry receives a distinct themed or contextual pictogram; `+
-      `${matchingWorldItems} existing World Items with module flags and default icons are eligible for icon-only refresh. `+
-      `Custom item images, unrelated World Items, and items already owned by Actors are not modified.</p>`+
+      `<p><strong>v0.2.3 Game-Icons.net artwork:</strong> 142 entries use recognizable illustrated icons. `+
+      `${matchingWorldItems} World Items can receive an icon-only refresh `+
+      `(${worldPreview.flagged} source-flag matches; ${worldPreview.folder} exact Combat Library folder/name/type matches). `+
+      `${worldPreview.custom} recognized World Items have custom artwork and will be skipped. `+
+      `A backup of previous World Item icons is stored before changes. `+
+      `Actor inventory, Item mechanics, IDs, folders and unrelated Items are not modified.</p>`+
       `<p><strong>Earlier v0.2.1 fix retained:</strong> Converts Punch, Kick, Bite, and Claw from reference-only Features `+
       `to native melee weapons when upgrading from older versions. Existing managed compendium entries keep their IDs, `+
       `and their previous records are backed up to a world setting. Back up your world before updating.</p>`,
@@ -475,11 +529,14 @@ Hooks.once("init", () => {
   game.settings.register(MOD,"typeMigrationBackup",{
     name:"Combat Library Type Migration Backup",scope:"world",config:false,type:String,default:""
   });
+  game.settings.register(MOD,"worldIconBackups",{
+    name:"Combat World Item Icon Backups",scope:"world",config:false,type:String,default:""
+  });
   game.settings.register(MOD,"installedVersion",{
     name:"Combat Library Version",scope:"world",config:false,type:String,default:""
   });
   const installed = game.modules.get(MOD);
-  if (installed) installed.api = {install:()=>promptInstall(true), getPack:pack, version:VERSION};
+  if (installed) installed.api = {install:()=>promptInstall(true), getPack:pack, previewWorldIcons:worldIconPreview, version:VERSION};
 });
 Hooks.once("ready", async () => {
   if (!game.user.isGM || game.system.id !== "worldofdarkness") return;
@@ -489,4 +546,4 @@ Hooks.once("ready", async () => {
   }
 });
 // Export only pure helpers for deterministic source-validation tests.
-export const CombatLibraryData = {weaponData, toItem, rulesText, ownership, iconFor, canReplaceIcon};
+export const CombatLibraryData = {weaponData, toItem, rulesText, ownership, iconFor, canReplaceIcon, worldFolderChain, worldIconPreview};

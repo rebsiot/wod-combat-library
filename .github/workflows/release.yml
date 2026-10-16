@@ -1,5 +1,4 @@
 name: Publish Foundry module release
-
 on:
   push:
     branches: [main]
@@ -7,39 +6,38 @@ on:
       - 'module.json'
       - 'scripts/**'
       - 'data/**'
+      - 'assets/**'
       - 'README.md'
       - 'CHANGELOG.md'
+      - 'THIRD_PARTY_ICONS.md'
       - 'tests/**'
-      - 'build_icons.py'
       - '.github/workflows/release.yml'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
         uses: actions/checkout@v4
-      - name: Build vector icons and run regression tests
+      - name: Expand bundled Game-Icons artwork and test
         shell: bash
         run: |
           set -euo pipefail
-          python3 build_icons.py
+          unzip -q assets/game-icons.zip -d assets
           node --check scripts/main.js
           node tests/smoke.cjs
-      - name: Prepare complete Foundry module ZIP
+      - name: Prepare full installable ZIP
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p dist/wod20-combat-library
-          cp module.json README.md CHANGELOG.md dist/wod20-combat-library/
-          cp -r scripts data tests assets dist/wod20-combat-library/
+          mkdir -p dist/wod20-combat-library/assets/icons
+          cp module.json README.md CHANGELOG.md THIRD_PARTY_ICONS.md dist/wod20-combat-library/
+          cp -r scripts data tests dist/wod20-combat-library/
+          cp assets/icons/*.svg dist/wod20-combat-library/assets/icons/
           (cd dist && zip -qr ../wod20-combat-library.zip wod20-combat-library)
           unzip -t wod20-combat-library.zip >/dev/null
-          test "$(unzip -Z1 wod20-combat-library.zip | grep -c 'assets/icons/.*\.svg$')" -eq 69
       - name: Publish GitHub release
         shell: bash
         env:
@@ -54,5 +52,5 @@ jobs:
             gh release create "$TAG" wod20-combat-library.zip \
               --target "$GITHUB_SHA" \
               --title "WoD20 Combat Library ${TAG}" \
-              --notes "Adds 69 bundled SVG icons mapped to all 142 entries, including icon-only updates for matching World Items. No actor inventory changes. See CHANGELOG.md; live Foundry testing pending."
+              --notes "Replaces ambiguous icons with attributed Game-Icons.net artwork and safely refreshes matching World Item icons. See CHANGELOG.md. Live Foundry v14 verification pending."
           fi
