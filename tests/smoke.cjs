@@ -1,0 +1,105 @@
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+const ROOT=path.resolve(__dirname,'..'), MOD='wod20-combat-library';
+const moves=JSON.parse(fs.readFileSync(path.join(ROOT,'data/moves.json'),'utf8'));
+const weapons=JSON.parse(fs.readFileSync(path.join(ROOT,'data/weapons.json'),'utf8'));
+assert.equal(moves.entries.length,49);assert.equal(weapons.entries.length,82);
+const uniq=new Set([...moves.entries,...weapons.entries].map(e=>e.key));assert.equal(uniq.size,131);
+const raw=fs.readFileSync(path.join(ROOT,'scripts/main.js'),'utf8');
+const source=raw.replace('export const CombatLibraryData','globalThis.CombatLibraryData');
+const users=[{id:'gm',isGM:true,role:4},{id:'player',isGM:false,role:1},
+ {id:'trusted',isGM:false,role:2},{id:'assistant',isGM:false,role:3}];
+const states=new Map(),packs=new Map(),hooks={},modules=new Map([[MOD,{}]]);let uid=0;
+const events=[];
+const copy=x=>JSON.parse(JSON.stringify(x));
+function doc(data){let o=copy(data);o.id=data._id||'I'+(++uid);o.getFlag=(ns,key)=>o.flags?.[ns]?.[key];o.toObject=()=>{const d=copy(o);d._id=o.id;delete d.id;return d};return o;}
+function createPack(){const p={collection:'world.'+MOD,documentName:'Item',locked:false,ownership:{},docs:[],folders:{contents:[]},
+  async configure(v){if(v.ownership)this.ownership={...v.ownership};if(v.locked!==undefined)this.locked=v.locked},
+  async getDocuments(){return this.docs}};packs.set(p.collection,p);return p;}
+const ctx={game:{user:users[0],users,system:{id:'worldofdarkness'},packs:{get:k=>packs.get(k)},modules:{get:k=>modules.get(k)},
+  settings:{register(){},async set(ns,key,v){states.set(ns+'.'+key,v)},get(ns,key){return states.get(ns+'.'+key)}}},
+ foundry:{documents:{collections:{CompendiumCollection:{async createCompendium(data){assert.equal(data.type,'Item');return createPack()}}}},
+  applications:{api:{DialogV2:{async confirm(){return true}}}}},
+ CONFIG:{Folder:{documentClass:{async create(d,o){let p=packs.get(o.pack),f={...d,id:'F'+(++uid)};p.folders.contents.push(f);return f}}},
+  Item:{documentClass:{async createDocuments(batch,o){const p=packs.get(o.pack),docs=batch.map(doc);p.docs.push(...docs);return docs},
+   async deleteDocuments(ids,o){const p=packs.get(o.pack);p.docs=p.docs.filter(d=>!ids.includes(d.id));return ids},
+   async updateDocuments(batch,o){const p=packs.get(o.pack);for(const b of batch){const d=p.docs.find(x=>x.id===b._id);assert.ok(d);Object.assign(d,{name:b.name,img:b.img,folder:b.folder,system:b.system,ownership:b.ownership});d.flags[MOD]=b[`flags.${MOD}`]}return batch}}}},
+ Hooks:{once(k,fn){hooks[k]=fn}},
+ fetch:async url=>({ok:true,json:async()=>url.endsWith('moves.json')?moves:weapons}),
+ ui:{notifications:{info:s=>events.push('INFO '+s),warn:s=>events.push('WARN '+s),error:s=>events.push('ERROR '+s)}},console};
+vm.runInNewContext(source,ctx,{filename:'main.js'});
+const api=()=>modules.get(MOD).api;
+async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'+MOD);assert.ok(p);
+ assert.equal(p.docs.length,142);assert.equal(p.locked,true);
+ for(let x of p.docs){assert.equal(x.ownership.default,2);for(const u of users)assert.equal(x.ownership[u.id],u.role>=3?3:2);
+  assert.ok(x.system.description.includes('table') || x.system.description.includes('Difficulty'));
+ }
+ for(let [k,v] of Object.entries({PLAYER:'OBSERVER',TRUSTED:'OBSERVER',ASSISTANT:'OWNER',GAMEMASTER:'OWNER'}))assert.equal(p.ownership[k],v);
+ const native=p.docs.filter(x=>x.type==='Melee Weapon'||x.type==='Ranged Weapon');
+ const melee=p.docs.filter(x=>x.getFlag(MOD,'key')?.startsWith('weapon-melee-'));
+ const ranged=p.docs.filter(x=>x.getFlag(MOD,'key')?.startsWith('weapon-ranged-'));
+ const thrown=p.docs.filter(x=>x.getFlag(MOD,'key')?.startsWith('weapon-thrown-'));
+ assert.equal(melee.length,42);assert.equal(ranged.length,34);assert.equal(thrown.length,6);
+ assert.equal(p.docs.length,142);assert.equal(p.docs.filter(x=>x.getFlag(MOD,'key')?.startsWith('move-extra-')).length,8);
+ assert.equal(p.docs.filter(x=>x.getFlag(MOD,'key')?.startsWith('weapon-reference-')).length,3);
+ for(const x of [...melee,...ranged,...thrown])assert.ok(x.system.description.includes('Concealment'),x.name);
+ for (const [name,bonus,type,difficulty] of [
+  ['Bite',1,'bashing',5], ['Claw',1,'lethal',6], ['Punch',0,'bashing',6], ['Kick',1,'bashing',7]]) {
+  const a=p.docs.find(x=>x.name===name);assert.ok(a, name);
+  assert.equal(a.type,'Melee Weapon');assert.equal(a.system.isnatural,true);
+  assert.equal(a.system.attack.ability,'brawl');assert.equal(a.system.damage.attribute,'strength');
+  assert.equal(a.system.damage.bonus,bonus);assert.equal(a.system.damage.type,type);
+  assert.equal(a.system.difficulty,difficulty);
+ }
+ assert.ok(p.docs.find(x=>x.name==='Bite').system.description.includes('Editable weapon default'));
+ assert.equal(p.docs.find(x=>x.name==='Bolan Mk. 13 Weapons System').type,'Feature');
+ assert.equal(p.docs.find(x=>x.name==='Flamethrower').type,'Feature');
+ assert.equal(p.docs.find(x=>x.name==='Rocket Launcher').type,'Feature');
+ assert.equal(p.docs.find(x=>x.name==='Shuriken').system.damage.bonus,3);
+ assert.equal(p.docs.find(x=>x.name==='Shuriken').system.damage.attribute,'');
+ assert.equal(p.docs.find(x=>x.name==='Great Axe').system.istwohanded,true);
+ assert.equal(p.docs.find(x=>x.name==='Great Axe').system.minstrength,3);
+ assert.equal(p.docs.find(x=>x.name==='Stiletto').system.piercing,3);
+ const targetActor={items:[],async createEmbeddedDocuments(kind,batch){assert.equal(kind,'Item');for(const entry of batch)this.items.push(doc(entry));return this.items}};
+ for (const name of ['Hatchet','Katana','Punch','Kick','Bite','Claw']) {
+   const item=p.docs.find(x=>x.name===name);
+   const embedded=await targetActor.createEmbeddedDocuments('Item',[item.toObject()]);
+   assert.equal(embedded.at(-1).type,'Melee Weapon');
+   assert.equal(embedded.at(-1).system.attack.isrollable,true);
+   assert.equal(embedded.at(-1).system.damage.isrollable,true);
+ }
+ assert.equal(targetActor.items.length,6);
+ const w=p.docs.find(x=>x.name==='Semi-Automatic Pistol, Light (Glock 17 9mm)');
+ assert.equal(w.type,'Ranged Weapon');assert.equal(w.system.damage.bonus,4);
+ assert.equal(w.system.clip.max,18);assert.equal(w.flags[MOD].clipNotation,'17+1');
+ const meleeItem=p.docs.find(x=>x.name==='Katana');assert.equal(meleeItem.system.damage.bonus,3);assert.equal(meleeItem.system.damage.attribute,'strength');
+ const itemCount=p.docs.length;await api().install();assert.equal(p.docs.length,itemCount);assert.equal(p.locked,true);
+ // 0.2.0 created Punch, Kick, Bite and Claw as Features. Upgrading must preserve IDs,
+ // create fully native weapons, and retain a world-side backup snapshot.
+ const oldIds=new Map();
+ for(const name of ['Bite','Claw','Punch','Kick']) {
+   const old=p.docs.find(x=>x.name===name);oldIds.set(name,old.id);
+   old.type='Feature';old.system={description:'0.2.0 reference',type:'',placement:'feature'};
+   old.flags[MOD].version='0.2.0';
+ }
+ await api().install();assert.equal(p.docs.length,itemCount);
+ for(const name of ['Bite','Claw','Punch','Kick']) {
+   const updated=p.docs.find(x=>x.name===name);
+   assert.equal(updated.id,oldIds.get(name));assert.equal(updated.type,'Melee Weapon');
+   assert.equal(updated.system.isnatural,true);
+ }
+ const backup=JSON.parse(states.get(MOD+'.typeMigrationBackup'));
+ assert.equal(backup.toVersion,'0.2.1');assert.equal(backup.items.length,4);
+ assert.ok(backup.items.every(x=>x.type==='Feature'));
+
+ // Exercise the upgrade path from 0.1.0 with existing 49 move records and an unlocked pack.
+ p.docs=p.docs.filter(x=>moves.entries.some(e=>e.key===x.getFlag(MOD,'key')));
+ for(const x of p.docs)x.flags[MOD].version='0.1.0';
+ p.locked=false;await api().install();assert.equal(p.docs.length,142);assert.equal(p.locked,false);
+ for(const x of p.docs)assert.equal(x.flags[MOD].version,'0.2.1');
+ // Refuse to expose unrelated packs before setting role permissions.
+ const old=copy(p.ownership);p.docs.push(doc({name:'Secret',flags:{},ownership:{default:0}}));
+ let rejected=false;try{await api().install()}catch(e){rejected=true;assert.ok(e.message.includes('not managed'))}
+ assert.equal(rejected,true);assert.deepEqual(p.ownership,old);
+ console.log('PASS: 142 entries; native Punch/Kick/Bite/Claw; 82 source weapons; player access; stable-ID 4-attack Feature->Melee migration + backup; mock native actor copies; fresh install, upgrade, rerun, pack safety.');
+}
+run().catch(e=>{console.error(e);process.exit(1)});
