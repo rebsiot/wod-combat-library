@@ -1,0 +1,1620 @@
+{
+  "version": "0.2.0",
+  "origin": "M20 core weapons tables pp. 450-453",
+  "entries": [
+    {
+      "key": "weapon-melee-hatchet",
+      "name": "Hatchet",
+      "category": "07 Melee — Axes",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-tomahawk",
+      "name": "Tomahawk",
+      "category": "07 Melee — Axes",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-axe",
+      "name": "Axe",
+      "category": "07 Melee — Axes",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-great-axe",
+      "name": "Great Axe",
+      "category": "07 Melee — Axes",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 6,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "Two-handed, very heavy; Strength 3 minimum."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-polearm",
+      "name": "Polearm",
+      "category": "07 Melee — Axes",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "Two hands required; one-handed use adds +2 attack difficulty."
+      ],
+      "sourceNotes": [
+        "2"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-stiletto",
+      "name": "Stiletto",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 4,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [
+        "Penetrates up to three points of armor."
+      ],
+      "sourceNotes": [
+        "3"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-knife-melee",
+      "name": "Knife (Melee)",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 4,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-short-sword",
+      "name": "Short Sword",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-sword",
+      "name": "Sword",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "T",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-katana",
+      "name": "Katana",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "T",
+      "notes": [
+        "May be used two-handed for +1 damage die."
+      ],
+      "sourceNotes": [
+        "4"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-great-sword",
+      "name": "Great Sword",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 6,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "Two-handed, very heavy; Strength 3 minimum."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-sai",
+      "name": "Sai",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "+1 die to the blocking pool.",
+        "+2 dice for disarm attempts."
+      ],
+      "sourceNotes": [
+        "5",
+        "6"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-hook-sword-s",
+      "name": "Hook Sword(s)",
+      "category": "08 Melee — Blades",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "T",
+      "notes": [
+        "Two hands required; one-handed use adds +2 attack difficulty.",
+        "+1 die to the blocking pool.",
+        "+2 dice for disarm attempts."
+      ],
+      "sourceNotes": [
+        "2",
+        "5",
+        "6"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-riot-baton",
+      "name": "Riot Baton",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "B",
+      "conceal": "T",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-baseball-bat",
+      "name": "Baseball Bat",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "B",
+      "conceal": "T",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-crowbar",
+      "name": "Crowbar",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-staff",
+      "name": "Staff",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "B",
+      "conceal": "N",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-iron-staff",
+      "name": "Iron Staff",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "Two-handed, very heavy; Strength 3 minimum."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-mace",
+      "name": "Mace",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-nunchaku",
+      "name": "Nunchaku",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "B",
+      "conceal": "T",
+      "notes": [
+        "+1 die to the blocking pool.",
+        "Increases an opponent's difficulty to block by +1."
+      ],
+      "sourceNotes": [
+        "5",
+        "7"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-spiked-club",
+      "name": "Spiked Club",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "T",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-huge-spiked-club",
+      "name": "Huge Spiked Club",
+      "category": "09 Melee — Clubs",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 4,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "Two-handed, very heavy; Strength 3 minimum."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-sap",
+      "name": "Sap",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 4,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "B",
+      "conceal": "P",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-brass-knuckles",
+      "name": "Brass Knuckles",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 0,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-spiked-gauntlet",
+      "name": "Spiked Gauntlet",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-hand-claws-small",
+      "name": "Hand Claws (small)",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-hand-claws-large",
+      "name": "Hand Claws (large)",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-katar",
+      "name": "Katar",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "Penetrates up to three points of armor.",
+        "+1 die to the blocking pool."
+      ],
+      "sourceNotes": [
+        "3",
+        "5"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-war-fan",
+      "name": "War Fan",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "+1 die to the blocking pool.",
+        "Increases an opponent's difficulty to block by +1."
+      ],
+      "sourceNotes": [
+        "5",
+        "7"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-wind-and-fire-wheel",
+      "name": "Wind and Fire Wheel",
+      "category": "10 Melee — Fist Extensions",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "+2 dice for disarm attempts."
+      ],
+      "sourceNotes": [
+        "6"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-broken-bottle",
+      "name": "Broken Bottle",
+      "category": "11 Melee — Improvised",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [
+        "Breaks after three uses."
+      ],
+      "sourceNotes": [
+        "8"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-melee-chair",
+      "name": "Chair",
+      "category": "11 Melee — Improvised",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "B",
+      "conceal": "N",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-chainsaw",
+      "name": "Chainsaw",
+      "category": "11 Melee — Improvised",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 8,
+      "damageBase": "strength",
+      "damageBonus": 7,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [
+        "On a botch, wielder takes damage."
+      ],
+      "sourceNotes": [
+        "9"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-table",
+      "name": "Table",
+      "category": "11 Melee — Improvised",
+      "weaponKind": "melee",
+      "sourcePage": 450,
+      "difficulty": 8,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "B",
+      "conceal": "N",
+      "notes": [
+        "Two-handed, very heavy; Strength 3 minimum."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 450",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-melee-chain",
+      "name": "Chain",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 0,
+      "damageType": "B",
+      "conceal": "J",
+      "notes": [
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-chain-whip",
+      "name": "Chain Whip",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-kusarigama",
+      "name": "Kusarigama",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "B",
+      "conceal": "T",
+      "notes": [
+        "Two hands required; one-handed use adds +2 attack difficulty.",
+        "+1 die to the blocking pool.",
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "2",
+        "5",
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-manriki-gusari",
+      "name": "Manriki-Gusari",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 2,
+      "damageType": "L",
+      "conceal": "T",
+      "notes": [
+        "Two hands required; one-handed use adds +2 attack difficulty.",
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "2",
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-melee-flogger",
+      "name": "Flogger",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "B",
+      "conceal": "J",
+      "notes": [
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-barbed-cat",
+      "name": "Barbed Cat",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 0,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-whip",
+      "name": "Whip",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 0,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-melee-bullwhip",
+      "name": "Bullwhip",
+      "category": "12 Melee — Whips and Chains",
+      "weaponKind": "melee",
+      "sourcePage": 451,
+      "difficulty": 7,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [
+        "May entangle an enemy limb at +1 difficulty."
+      ],
+      "sourceNotes": [
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 451",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-revolver-light-s-w-m640-38-special",
+      "name": "Revolver, Light (S&W M640 .38 Special)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 4,
+      "range": 12,
+      "rate": 3,
+      "clip": "6",
+      "conceal": "P",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-ranged-revolver-heavy-colt-anaconda-44-magnum",
+      "name": "Revolver, Heavy (Colt Anaconda .44 Magnum)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 6,
+      "range": 35,
+      "rate": 2,
+      "clip": "6",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-semi-automatic-pistol-light-glock-17-9mm",
+      "name": "Semi-Automatic Pistol, Light (Glock 17 9mm)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 4,
+      "range": 20,
+      "rate": 4,
+      "clip": "17+1",
+      "conceal": "P",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-ranged-semi-automatic-pistol-heavy-imi-desert-eagle-50-ae",
+      "name": "Semi-Automatic Pistol, Heavy (IMI Desert Eagle .50 AE)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 5,
+      "range": 30,
+      "rate": 3,
+      "clip": "7+1",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-rifle-remington-m-700-30-06",
+      "name": "Rifle (Remington M-700 .30-06)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 200,
+      "rate": 1,
+      "clip": "5+1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-smg-small-ingram-mac-10-9mm",
+      "name": "SMG, Small (Ingram Mac-10 9mm)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 4,
+      "range": 25,
+      "rate": 3,
+      "clip": "30+1",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-smg-large-hk-mp-5-9mm",
+      "name": "SMG, Large (HK MP-5 9mm)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 4,
+      "range": 50,
+      "rate": 3,
+      "clip": "30+1",
+      "conceal": "T",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-ranged-assault-rifle-ak-47-7-62x39mm",
+      "name": "Assault Rifle (AK-47 7.62x39mm)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 7,
+      "range": 150,
+      "rate": 3,
+      "clip": "42+1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-shotgun-sawed-off-winchester-model-24-12-gauge",
+      "name": "Shotgun, Sawed Off (Winchester Model 24 12 Gauge)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 10,
+      "rate": 2,
+      "clip": "2",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-shotgun-ithaca-m-37-12-gauge",
+      "name": "Shotgun (Ithaca M-37 12 Gauge)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 20,
+      "rate": 1,
+      "clip": "5+1",
+      "conceal": "T",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-ranged-shotgun-semi-automatic-benelli-m4-12-gauge",
+      "name": "Shotgun, Semi-Automatic (Benelli M4 12 Gauge)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 25,
+      "rate": 3,
+      "clip": "6+1",
+      "conceal": "T",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-ranged-shotgun-assault-mps-aa-12-12-gauge",
+      "name": "Shotgun, Assault (MPS AA-12 12 Gauge)",
+      "category": "13 Ranged — Conventional",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 50,
+      "rate": 3,
+      "clip": "32+1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-biggs-x-5-model-r-protector",
+      "name": "Biggs X-5 Model R Protector",
+      "category": "14 Ranged — Technocracy",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 5,
+      "range": 40,
+      "rate": 4,
+      "clip": "12",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Technocracy-only equipment; distribution restrictions apply.",
+        "Special revolver whose chambers can be selected between ammunition types."
+      ],
+      "sourceNotes": [
+        "3"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-biggs-x-5-model-a-protector",
+      "name": "Biggs X-5 Model A Protector",
+      "category": "14 Ranged — Technocracy",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 5,
+      "range": 40,
+      "rate": 4,
+      "clip": "12+1",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Technocracy-only equipment; distribution restrictions apply.",
+        "May fire fully automatic, three-round bursts, and strafing sprays."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-biggs-mjollner-mk-iv",
+      "name": "Biggs Mjollner Mk. IV",
+      "category": "14 Ranged — Technocracy",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 10,
+      "range": 100,
+      "rate": 1,
+      "clip": "10",
+      "conceal": "T",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Technocracy-only equipment; distribution restrictions apply.",
+        "Extremely unusual firearm; may jam on a failed roll when used by the Enlightened."
+      ],
+      "sourceNotes": [
+        "4"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-ranged-castle-graves-ww-3",
+      "name": "Castle-Graves WW-3",
+      "category": "14 Ranged — Technocracy",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 200,
+      "rate": 3,
+      "clip": "50+1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Technocracy-only equipment; distribution restrictions apply.",
+        "May fire fully automatic, three-round bursts, and strafing sprays."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-hit-mark-chain-gun",
+      "name": "HIT Mark Chain-Gun",
+      "category": "14 Ranged — Technocracy",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 8,
+      "range": 150,
+      "rate": 3,
+      "clip": "200",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Technocracy-only equipment; distribution restrictions apply.",
+        "May fire fully automatic, three-round bursts, and strafing sprays.",
+        "Unusually portable chain-gun design; halves protection from armor due to drilling impact."
+      ],
+      "sourceNotes": [
+        "1",
+        "11"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-short-bow",
+      "name": "Short Bow",
+      "category": "15 Ranged — Bows",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 4,
+      "range": 60,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "archery",
+      "notes": [
+        "Bows and crossbows require two actions to reload, except Archery 3+ can ready a bow shot in one action. Crossbows cannot use this reduction."
+      ],
+      "sourceNotes": [
+        "6"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-hunting-bow",
+      "name": "Hunting Bow",
+      "category": "15 Ranged — Bows",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 5,
+      "range": 100,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "archery",
+      "notes": [
+        "Bows and crossbows require two actions to reload, except Archery 3+ can ready a bow shot in one action. Crossbows cannot use this reduction."
+      ],
+      "sourceNotes": [
+        "6"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-long-bow",
+      "name": "Long Bow",
+      "category": "15 Ranged — Bows",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 5,
+      "range": 120,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "archery",
+      "notes": [
+        "Bows and crossbows require two actions to reload, except Archery 3+ can ready a bow shot in one action. Crossbows cannot use this reduction."
+      ],
+      "sourceNotes": [
+        "6"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-crossbow-commando",
+      "name": "Crossbow, Commando",
+      "category": "15 Ranged — Bows",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 3,
+      "range": 20,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "J",
+      "damageType": "L",
+      "ability": "archery",
+      "notes": [
+        "Collapsible crossbow: one action to unfold and another action to load.",
+        "Bows and crossbows require two actions to reload, except Archery 3+ can ready a bow shot in one action. Crossbows cannot use this reduction."
+      ],
+      "sourceNotes": [
+        "7"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Jacket"
+    },
+    {
+      "key": "weapon-ranged-crossbow",
+      "name": "Crossbow",
+      "category": "15 Ranged — Bows",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 5,
+      "range": 90,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "T",
+      "damageType": "L",
+      "ability": "archery",
+      "notes": [
+        "Bows and crossbows require two actions to reload, except Archery 3+ can ready a bow shot in one action. Crossbows cannot use this reduction."
+      ],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Trenchcoat"
+    },
+    {
+      "key": "weapon-ranged-crossbow-heavy",
+      "name": "Crossbow, Heavy",
+      "category": "15 Ranged — Bows",
+      "weaponKind": "ranged",
+      "sourcePage": 452,
+      "damageDice": 6,
+      "range": 100,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "archery",
+      "notes": [
+        "Bows and crossbows require two actions to reload, except Archery 3+ can ready a bow shot in one action. Crossbows cannot use this reduction."
+      ],
+      "sourceNotes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-taser",
+      "name": "Taser",
+      "category": "16 Ranged — Nonlethal",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 5,
+      "range": 5,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "P",
+      "damageType": "B",
+      "ability": "firearms",
+      "notes": [
+        "Bashing damage without extra damage from successes. Tear gas and Technocratic pacification spray also reduce target dice pools by two for one turn per success."
+      ],
+      "sourceNotes": [
+        "8"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-ranged-tear-gas",
+      "name": "Tear Gas",
+      "category": "16 Ranged — Nonlethal",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 3,
+      "range": 3,
+      "rate": 1,
+      "clip": "5",
+      "conceal": "P",
+      "damageType": "B",
+      "ability": "firearms",
+      "notes": [
+        "Bashing damage without extra damage from successes. Tear gas and Technocratic pacification spray also reduce target dice pools by two for one turn per success."
+      ],
+      "sourceNotes": [
+        "8"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-ranged-pacification-spray",
+      "name": "Pacification Spray",
+      "category": "16 Ranged — Nonlethal",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 5,
+      "range": 3,
+      "rate": 1,
+      "clip": "5",
+      "conceal": "P",
+      "damageType": "B",
+      "ability": "firearms",
+      "notes": [
+        "Bashing damage without extra damage from successes. Tear gas and Technocratic pacification spray also reduce target dice pools by two for one turn per success."
+      ],
+      "sourceNotes": [
+        "8"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-ranged-30-caliber-machine-gun",
+      "name": ".30 Caliber Machine Gun",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 12,
+      "range": 800,
+      "rate": 5,
+      "clip": "100",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "1"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-50-caliber-machine-gun",
+      "name": ".50 Caliber Machine Gun",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 16,
+      "range": 1000,
+      "rate": 5,
+      "clip": "200",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays.",
+        "Must be vehicle-mounted.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "1",
+        "10"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-30-mm-cannon",
+      "name": "30 mm Cannon",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 15,
+      "range": 1200,
+      "rate": 8,
+      "clip": "100",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "May fire fully automatic, three-round bursts, and strafing sprays.",
+        "Unusually portable chain-gun design; halves protection from armor due to drilling impact.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "1",
+        "11"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-m-79-grenade-launcher",
+      "name": "M-79 Grenade Launcher",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 6,
+      "range": 400,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Explosive damage governed by a separate Explosives chart not included in these uploaded pages.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "12"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-m-19-grenade-launcher",
+      "name": "M-19 Grenade Launcher",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 8,
+      "range": 600,
+      "rate": 2,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Must be vehicle-mounted.",
+        "Explosive damage governed by a separate Explosives chart not included in these uploaded pages.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "10",
+        "12"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-flamethrower",
+      "name": "Flamethrower",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 0,
+      "range": 60,
+      "rate": 1,
+      "clip": "5",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Explosive damage governed by a separate Explosives chart not included in these uploaded pages.",
+        "3 health levels per turn of exposure to fire (fire damage); source specifies 60 yards.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "12"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-rocket-launcher",
+      "name": "Rocket Launcher",
+      "category": "17 Ranged — Military",
+      "weaponKind": "ranged",
+      "sourcePage": 453,
+      "damageDice": 0,
+      "range": 500,
+      "rate": 1,
+      "clip": "1",
+      "conceal": "N",
+      "damageType": "L",
+      "ability": "firearms",
+      "notes": [
+        "Explosive damage governed by a separate Explosives chart not included in these uploaded pages.",
+        "12-16 dice listed; explosive damage/area details are not supplied in this PDF. Range: 500+ yards.",
+        "Military weapon: Heavy Weapons specialization and (in the U.S.) Class C ownership license noted in source."
+      ],
+      "sourceNotes": [
+        "12"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-ranged-bolan-mk-13-weapons-system",
+      "name": "Bolan Mk. 13 Weapons System",
+      "category": "14 Ranged — Technocracy",
+      "weaponKind": "reference",
+      "sourcePage": 452,
+      "damageDice": null,
+      "range": null,
+      "rate": null,
+      "clip": null,
+      "conceal": "N",
+      "damageType": null,
+      "ability": null,
+      "notes": [
+        "Technocracy-only equipment; distribution restrictions apply.",
+        "Composite multi-mode firearm: an AK-47-like automatic weapon (50-round clip), an AA-12-type shotgun (20-shot clip), and an M-79-style grenade launcher (six-shot magazine).",
+        "Laser sight (Heavy): Strength 3 or higher is required, or the wielder must brace against recoil.",
+        "Damage, range, and rate are determined by the component and its relevant row; the table does not give a single combined value."
+      ],
+      "sourceNotes": [
+        "5"
+      ],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 452",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-thrown-knife",
+      "name": "Knife (Thrown)",
+      "category": "18 Thrown Weapons",
+      "weaponKind": "thrown",
+      "sourcePage": 453,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 0,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-thrown-shuriken",
+      "name": "Shuriken",
+      "category": "18 Thrown Weapons",
+      "weaponKind": "thrown",
+      "sourcePage": 453,
+      "difficulty": 7,
+      "damageBase": "fixed",
+      "damageBonus": 3,
+      "damageType": "L",
+      "conceal": "P",
+      "notes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Pocket"
+    },
+    {
+      "key": "weapon-thrown-spear",
+      "name": "Spear",
+      "category": "18 Thrown Weapons",
+      "weaponKind": "thrown",
+      "sourcePage": 453,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "N",
+      "notes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-thrown-stone",
+      "name": "Stone",
+      "category": "18 Thrown Weapons",
+      "weaponKind": "thrown",
+      "sourcePage": 453,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 0,
+      "damageType": "B",
+      "conceal": "varies",
+      "notes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Varies"
+    },
+    {
+      "key": "weapon-thrown-stone-large",
+      "name": "Stone, Large",
+      "category": "18 Thrown Weapons",
+      "weaponKind": "thrown",
+      "sourcePage": 453,
+      "difficulty": 5,
+      "damageBase": "strength",
+      "damageBonus": 3,
+      "damageType": "B",
+      "conceal": "N",
+      "notes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Cannot be concealed"
+    },
+    {
+      "key": "weapon-thrown-tomahawk",
+      "name": "Tomahawk (Thrown)",
+      "category": "18 Thrown Weapons",
+      "weaponKind": "thrown",
+      "sourcePage": 453,
+      "difficulty": 6,
+      "damageBase": "strength",
+      "damageBonus": 1,
+      "damageType": "L",
+      "conceal": "J",
+      "notes": [],
+      "source": "Mage: The Ascension 20th Anniversary Edition, p. 453",
+      "concealDescription": "Jacket"
+    }
+  ]
+}
