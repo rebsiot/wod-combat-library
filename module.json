@@ -1,0 +1,30 @@
+{
+  "id": "wod20-combat-library",
+  "title": "WoD20 Combat Library — Weapons, Martial Arts, Do",
+  "description": "Player-readable Foundry Item compendium: weapons, combat maneuvers, dirty fighting, Martial Arts, and Akashic Do. Independent of Mage Charamancer starter equipment.",
+  "version": "0.2.1",
+  "authors": [
+    {
+      "name": "M20 Player Tools"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "worldofdarkness",
+        "type": "system"
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "url": "https://github.com/rebsiot/wod-combat-library",
+  "manifest": "https://raw.githubusercontent.com/rebsiot/wod-combat-library/main/module.json",
+  "download": "https://github.com/rebsiot/wod-combat-library/releases/latest/download/wod20-combat-library.zip",
+  "readme": "README.md"
+}
