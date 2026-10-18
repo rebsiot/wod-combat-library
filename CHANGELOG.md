@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.5 — 2026-10-18
+
+- Shortened the name shown in Foundry Module Management to **WoD20 Combat Library**.
+- Kept the module ID `wod20-combat-library`, GitHub repository, manifest URL, and existing compendium/World Item data unchanged.
+- This display-only release does not initiate a new content migration for worlds already on content version 0.2.4. Previously pending content updates still require GM approval and a world backup.
+- Automated build/tests pending release; live Foundry display-name verification pending.
+
+
 ## 0.2.4 — 2026-10-15
 
 - Recognize the WoD20 default `feature.svg`, `naturalweapons.svg`, `meleeweapons.svg`, and `rangedweapons.svg` images as replaceable during World Item icon migration; the previous list only recognized core Foundry placeholder SVGs.

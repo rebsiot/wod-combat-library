@@ -5,6 +5,7 @@
  * Only module-managed World Item icons are refreshed; actor items are never modified.
  */
 const MOD = "wod20-combat-library";
+// Managed combat content version. A display-name-only module update does not migrate world Items.
 const VERSION = "0.2.4";
 const PACK_NAME = "wod20-combat-library";
 const PACK_ID = `world.${PACK_NAME}`;
@@ -553,7 +554,7 @@ Hooks.once("init", () => {
     name:"Combat Library Version",scope:"world",config:false,type:String,default:""
   });
   const installed = game.modules.get(MOD);
-  if (installed) installed.api = {install:()=>promptInstall(true), getPack:pack, previewWorldIcons:worldIconPreview, version:VERSION};
+  if (installed) installed.api = {install:()=>promptInstall(true), getPack:pack, previewWorldIcons:worldIconPreview, version:game.modules.get(MOD)?.version || VERSION, contentVersion:VERSION};
 });
 Hooks.once("ready", async () => {
   if (!game.user.isGM || game.system.id !== "worldofdarkness") return;
