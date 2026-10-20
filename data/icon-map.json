@@ -21,7 +21,7 @@
     "flying-kick": "game-03-delapouite-high-kick",
     "hard-strike": "game-03-lorc-punch",
     "soft-strike": "game-03-lorc-slap",
-    "joint-lock": "game-03-delapouite-handcuffed",
+    "joint-lock": "portrait-joint-lock",
     "nerve-pressure-point-strike": "game-03-lorc-pointing",
     "snake-step-hard": "game-03-skoll-footsteps",
     "snake-step-soft": "game-03-skoll-footsteps",
@@ -140,7 +140,7 @@
     "move-extra-grapple": "game-01-lorc-grab",
     "move-extra-kick": "game-01-lorc-boot-kick",
     "move-extra-punch": "game-01-lorc-punch",
-    "move-extra-martial-disarm": "game-03-delapouite-handcuffed",
+    "move-extra-martial-disarm": "game-01-lorc-sword-clash",
     "weapon-reference-concealment": "game-19-delapouite-rule-book",
     "weapon-reference-range": "game-19-delapouite-eye-target",
     "weapon-reference-reloads": "game-19-lorc-open-book"

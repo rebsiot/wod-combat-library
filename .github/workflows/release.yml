@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          unzip -q assets/game-icons.zip -d assets
+          unzip -oq assets/game-icons.zip -d assets
           node --check scripts/main.js
           node tests/smoke.cjs
       - name: Prepare full installable ZIP
@@ -34,7 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p dist/wod20-combat-library/assets/icons
-          cp module.json README.md CHANGELOG.md THIRD_PARTY_ICONS.md dist/wod20-combat-library/
+          cp module.json README.md CHANGELOG.md THIRD_PARTY_ICONS.md RELEASE-NOTES.md dist/wod20-combat-library/
           cp -r scripts data tests docs dist/wod20-combat-library/
           cp assets/icons/*.svg dist/wod20-combat-library/assets/icons/
           (cd dist && zip -qr ../wod20-combat-library.zip wod20-combat-library)
@@ -53,5 +53,5 @@ jobs:
             gh release create "$TAG" wod20-combat-library.zip \
               --target "$GITHUB_SHA" \
               --title "WoD20 Combat Library ${TAG}" \
-              --notes "New full-color Combat Library artwork (116 illustrations, 19 palettes) across all 142 Items; matching names and item data are preserved. GM-previewed World Item icon fixes remain opt-in. Live Foundry verification pending. See CHANGELOG.md."
+              --notes "Approved blue-framed action portraits for 22 combat maneuvers: Head Butt, kicks, punches, Joint Lock, Low Blow, Body Slam, throws, disarms and grapples. Remaining icons keep the 0.2.6 artwork. Back up your world, Update All, Ctrl+Shift+R, and review the GM icon preview. Item data and custom art preserved; live Foundry test pending."
           fi

@@ -12,7 +12,9 @@ Browse the **WoD20 Combat Library** compendium, drag a **copy** of a weapon or m
 - **Akashic Do:** specialized techniques and training references. The module does not invent rules automation for extraordinary effects.
 - **Reference guides:** brief equipment, concealment and action notes.
 
-The 142 catalog entries use 116 distinct bundled Game-Icons silhouettes in 19 category color palettes. Icons work offline and are designed to remain recognizable at Foundry sidebar sizes.
+The 142 entries include 117 unique local icon paths. **In v0.2.7, 22 combat maneuvers use 10 detailed, blue-framed action illustrations**, based on the reviewed preview (including the corrected Throw and Joint Lock). The other entries retain the existing category-colored Game-Icons artwork. No new weapon data or automation was added. All images are bundled and work offline.
+
+![Approved illustrated combat maneuvers preview](docs/approved-action-portraits.jpg)
 
 ## Requirements
 

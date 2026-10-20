@@ -167,3 +167,8 @@ Please, include a mention "Icons made by {author}" in your derivative work.
 If you use them in one of your project, don't hesitate to drop a message to delapouite@gmail.com or ping @GameIcons on twitter.
 
 More info and icons available at https://game-icons.net
+
+
+## v0.2.7 original generated illustrations
+
+The new blue-framed combat-action portraits in this release were generated for this project from user-directed previews and corrections; they are not redistributed Game-Icons.net artwork. They replace selected former Game-Icons paths. The remaining icon silhouettes still use Game-Icons artwork credited above. The final user-approved composition was cropped and embedded locally in the affected SVG files. The user must review any applicable game-rule text distribution restrictions independently of these artwork assets.

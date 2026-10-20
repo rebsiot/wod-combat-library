@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.7 — 2026-10-20
+
+- Replaced selected combat-maneuver icons with the approved realistic, blue-framed portraits: Head Butt, kicks, punches, Joint Lock, Elbow/Knee Strike, Low Blow (groin strike), Body Slam, throws, disarms and grapples. Ten individual illustrations are used by 22 mapped catalog entries.
+- Used the corrected user-approved Throw and anatomically improved Joint Manipulation images. Added an illustrated contact sheet at `docs/approved-action-portraits.jpg`.
+- Reused existing SVG icon filenames/paths wherever possible. One additional dedicated `portrait-joint-lock.svg` separates Joint Lock from the formerly shared Martial Disarm icon; Martial Disarm maps to the disarm portrait instead.
+- Existing non-target weapons and maneuvers retain the v0.2.6 colored icons; this is **not** a complete all-142 portrait conversion.
+- Preserves IDs, Item types, statistics, descriptions, folders and custom art. Targeted path changes are handled through the existing GM-previewed icon-only update. No actor-owned Items are written.
+- SVG assets embed local JPEG image bytes and require no remote loading. Prior third-party icon credits remain for the unaffected Game-Icons artwork.
+- Automated checks: packaged catalog, SVG/JPEG contents, migration mocks, and zip integrity. Live Foundry v14 checks pending.
+
+
 ## v0.2.6 — 2026-10-19
 
 - Recolored all 116 bundled Game-Icons silhouettes with 19 distinct category palettes; all 142 entries retain their recognizable icon shape, filename and item type. Colors are designed for readability at 32-48px in Foundry's Items and Compendium views.
