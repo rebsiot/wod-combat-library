@@ -1,120 +1,56 @@
-## v0.2.4 — World Item icon repair
+# WoD20 Combat Library
 
-When the compendium icon set updates but World Items retain default paper-and-pencil/fist/weapon art, v0.2.4 recognizes the native WoD20 placeholder images (as well as Foundry defaults and older module icons). The GM update dialog previews eligible World Items, custom-art exclusions and already-current images. It preserves the exact ID, type, folder, descriptions and statistics of every World Item; no actor-owned equipment is changed. A backup of previous World Item image paths is stored before updates.
+Browse the **WoD20 Combat Library** compendium, drag a **copy** of a weapon or maneuver onto a character you control, and use native WoD20 Items where the rules support a roll. The shared compendium masters are readable to players but protected from player edits.
 
-**Upgrade:** Back up the world, update the module with Foundry **Update All**, restart Foundry if needed, hard-refresh **Ctrl+Shift+R**, and as GM accept **Update WoD20 Combat Library**. If the dialog reports zero eligible World Items despite old artwork, do not delete/reimport; use the exposed `previewWorldIcons()` diagnostic so folder/flag mismatches can be identified safely.
+![Example of the full-color illustrated Combat Library icons](docs/icon-gallery.png)
 
-# WoD20 Combat Library v0.2.3
+## What's inside
 
-A separate, reusable combat compendium for **Foundry VTT 13/14** and the **World of Darkness 20th** system. Updates from GitHub through Foundry's **Update All** and maintains a separate, player-readable Item compendium. Nothing is automatically added to characters.
+- **Weapons:** native melee, ranged, natural and thrown weapons where the WoD20 sheet supports those mechanics. Basic Punch, Kick, Bite and Claw are native natural weapons.
+- **Dirty Fighting:** practical attacks such as Curbstomp, Head Butt and Pistol Whip; unusual maneuvers may remain reference-only Features.
+- **Martial Arts:** striking, blocking, locks and throws, including techniques that require Storyteller adjudication.
+- **Akashic Do:** specialized techniques and training references. The module does not invent rules automation for extraordinary effects.
+- **Reference guides:** brief equipment, concealment and action notes.
 
-## v0.2.3 — Game-Icons.net artwork and World Item update fix
+The 142 catalog entries use 116 distinct bundled Game-Icons silhouettes in 19 category color palettes. Icons work offline and are designed to remain recognizable at Foundry sidebar sizes.
 
-All 142 entries now use recognizable illustrated artwork selected from the user-provided **Game-Icons.net SVG set**. The release includes 116 locally bundled SVGs and the file `THIRD_PARTY_ICONS.md` with original authors and licensing. The image artwork is color-adjusted but properly attributed. It never requires web image fetching in Foundry.
+## Requirements
 
-**What v0.2.2 missed:** That update only identified World Items with `flags.wod20-combat-library.key`. Foundry imports sometimes lack the flag. Version 0.2.3 finds those additional World Items only when their **exact name, Item type, category folder, and `WoD20 Combat Library` ancestor folder** match the catalog. It updates *only* the image field. It preserves World Item IDs, mechanics, descriptions, names, folders, custom art, and Actor-owned copies. It doesn't create duplicates or mass-import Items. Items outside the Combat Library folder or with unmatched types are intentionally skipped.
+- Foundry VTT 13–14 (module compatibility metadata; **live Foundry 14 regression is pending**).
+- World of Darkness 20th system (`worldofdarkness`, previously documented around 7.3.x). Verify the installed system version before reporting a compatibility issue.
 
-The GM-confirmation dialog shows how many matching World Items will receive the update (flag matches versus folder/name matches) and how many have custom art protected from replacement. Before updating any World Item images, the module stores a rolling backup of previous image paths in the hidden world setting `wod20-combat-library.worldIconBackups` (up to five snapshots). Restore a matching world backup for reliable rollback.
+## Install and get started
 
-**Reference maneuvers** and unusual weapon effects that don't have accurate native roll mechanics remain `Feature` Items; an icon change does not add fictitious automation. Punch, Kick, Bite, and Claw remain native `Melee Weapon` Items with the prior v0.2.1 fixes.
+1. In Foundry **Setup → Add-on Modules → Install Module**, use the manifest URL below, or update an existing install using **Update All**.
+2. Enable **WoD20 Combat Library** in your world's **Game Settings → Manage Modules**.
+3. Press **Ctrl+Shift+R** in your Foundry browser. As GM, review and approve **Create/Update WoD20 Combat Library** if offered, after making a world backup.
+4. Open **Compendium Packs → WoD20 Combat Library**, find **Hatchet** or **Punch**, and drag a copy onto an editable character sheet.
+5. Check **Combat → Melee Weapons / Natural Weapons**. Test as a player: the player should be able to view and copy Items, not edit the source compendium.
 
-### Recommended GitHub update
+**Manifest:** `https://raw.githubusercontent.com/rebsiot/wod-combat-library/main/module.json`
 
-1. **Back up your Foundry world** and previous module files before the update.
-2. In Foundry, click **Add-on Modules → Update All**. Verify `WoD20 Combat Library` is now **v0.2.3**.
-3. Restart Foundry if needed. In the Foundry browser, press **Ctrl+Shift+R**.
-4. Log in as GM and approve **Update WoD20 Combat Library**. Check the World Item preview counts first.
-5. Compare Curbstomp, Head Butt, Joint Lock, Throw (Hard), Axe and Katana in both **Compendium Packs** and the **Items** directory.
-6. Character-owned weapon icons won't automatically change. Existing actor Items are not modified.
+**Release ZIP:** https://github.com/rebsiot/wod-combat-library/releases/latest
 
-**Rollback:** Restore both the previous module version and the pre-update **world backup**. The hidden icon backup stores prior paths for manual recovery only; this module does not include a one-click image rollback.
+## GM: refresh old World Item icons
 
-## Contents
+Compendium entries and copied World Items are separate Foundry documents. A **GM-approved** update previews how many World Items match this library, how many are already current, and how many custom images are excluded. It updates only `img` on qualifying World Items, saves prior image paths in a hidden world setting, and preserves IDs, types, folders, names, descriptions, statistics, flags and customizations. It is **not** a mass overwrite and does not import a second set of World Items.
 
-**142 reference and equipment Items:**
+**New in v0.2.6:** Existing Items already referencing this module's SVG filenames receive the new colors automatically when files are refreshed. Those same paths may be used by character-owned copies: their displayed artwork changes without editing the Actor document. The GM update pass is for older placeholder-image World Items that still need a managed path assigned.
 
-- 49 maneuvers, Do techniques, and reference guides from the original Martial Arts/Do source excerpt (M20 pp. 422-430)
-- 82 distinct weapon entries from the weapons table (M20 pp. 450-453): 42 melee weapons, 34 ranged/equipment entries, 6 thrown weapons
-- 8 missing general/martial maneuvers from the M20 maneuver tables (pp. 448-449)
-- 3 short guide Items for concealment, ranged attacks, ammunition/reloading, and exceptional effects
+Back up the Foundry **world data**, including the compendium, before approving an in-world icon refresh. Restore the matching world snapshot if you need to undo an icon migration; reinstalling old module code alone does not restore modified world documents.
 
-Weapons are grouped into named compendium folders: axes, blades, clubs, fist extensions, improvised, whips/chains, conventional firearms, Technocracy, bows, nonlethal, military, thrown.
+## Known limitations and status
 
-### Native WoD20 Item handling
+- **Automated/mock tested:** all catalog mappings, icon assets, installed-package integrity, Player/GM permission model, compendium upgrades and guarded World Item icon updates.
+- **Not confirmed live for v0.2.6:** GM-approved World Item matching and player drag/drop in a real Foundry 14 world. A green release workflow is not a live session.
+- Many special combat maneuvers are intentionally read-only/reference `Feature` Items, not fabricated weapon rolls. The module is **not** a combat automation engine.
+- Icon artwork cannot replace a custom image. Items whose image path does not match known defaults or this module's managed art are left untouched.
+- No automatic synchronization of weapon statistics or descriptions from masters to character-owned copies.
 
-**v0.2.1 fix — basic natural attacks:** Punch, Kick, Bite, and Claw are now native
-`Melee Weapon` Items with `system.isnatural = true`, rather than reference-only
-`Feature` entries. On a WoD20 character sheet these belong in **Combat → Natural
-Weapons**, with attack and damage rolls. Punch is Strength bashing at difficulty 6,
-Kick is Strength +1 bashing at difficulty 7, Bite uses a provisional Strength +1
-bashing at difficulty 5, and Claw uses a provisional Strength +1 lethal at
-difficulty 6. The source allows variable bite/claw damage and damage types by
-physiology; the description gives the full range. Edit the **character-owned copy**
-for the creature in question. Melee combat maneuvers with straightforward attack
-and damage rules retain their native weapon entries; unusual special-effect moves
-remain reference Features rather than inventing automation.
+## Support, licensing and credits
 
-**In-place upgrade from v0.2.0:** The four managed Feature entries are changed to
-native weapons with the **same compendium Item IDs**. Before the retyping operation,
-the GM client stores the original four JSON records under the hidden world setting
-`wod20-combat-library.typeMigrationBackup`. Other managed compendium items are
-updated normally. Actor-owned copies are never changed. The upgrade requires a
-GM confirmation and a **world backup before installation**. If the migration fails,
-it attempts to restore the original Item immediately and displays an error; retain
-the world backup until a live smoke test passes. This is not a claim of live-tested
-migration behavior.
+[GitHub issues](https://github.com/rebsiot/wod-combat-library/issues) · [Releases](https://github.com/rebsiot/wod-combat-library/releases) · [Changelog](CHANGELOG.md) · [Third-party icon credits](THIRD_PARTY_ICONS.md)
 
-Simple melee, ranged, and thrown weapons use WoD20's native `Melee Weapon` or `Ranged Weapon` types. Fields include attack pool/ability, damage, difficulty, concealment, range, rate, and magazine capacity where these apply. The listed melee attack difficulties are from the book. Since the ranged table does not specify a base attack difficulty, the module uses the WoD20 default difficulty 6 and explains range modifiers in the reference guide. Ranged base damage uses the fixed damage dice given in the book; melee uses Strength plus bonus. Strength/Skill choices for attacking are standard mappings, not values supplied explicitly by the table.
+Illustrations adapted from the user-supplied **Game-Icons.net** collection. Per-icon artists are credited in `THIRD_PARTY_ICONS.md`; artwork is generally CC BY 3.0 with noted CC0 exceptions. Color palettes, gradients, SVG presentation and highlights have been modified. Do not treat this icon license as an unrestricted license for the separate module code or World of Darkness rules text.
 
-Weapons with effects that cannot be represented accurately using a straightforward damage roll are `Feature` reference Items, including the Bolan Mk. 13 composite weapons system, Flamethrower, and Rocket Launcher. No invented damage automation is included. Grenade launchers have damage fields as printed, but use separate explosive rules for blast effects; those rules are not in the uploaded table. Source descriptions retain noteworthy restrictions, unusual reload/mode rules, and source page citations.
-
-The book's clip notations like `17+1` are displayed exactly in Item descriptions and recorded in metadata. The native numeric clip capacity is 18 in that case. Thrown weapon ranges are absent from the table and left unspecified (0 in the sheet).
-
-The 49 original moves retain their original item types. Some moves represented by Feature require Storyteller adjudication; no false auto-attack macros have been added.
-
-## Permissions
-
-This is an **Item compendium**, not a public editable world folder. On first install and every upgrade, the installer sets:
-
-| Foundry role | Compendium | Each Item |
-|---|---|---|
-| Player | OBSERVER | Observer (2) |
-| Trusted Player | OBSERVER | Observer (2) |
-| Assistant GM | OWNER | Owner (3) |
-| GM | OWNER | Owner (3) |
-
-Item ownership is also set explicitly by user ID to account for existing players. This lets players search, inspect, and drag **copies** onto characters they control, but not edit the shared originals. New compendiums are locked against accidental changes. If a previously created pack was unlocked before the upgrade, that lock preference is preserved.
-
-Only items with this module's own managed flags are updated. If the target compendium contains unmanaged Items, the installer refuses to change the pack rather than exposing private content. **No ownership on existing actors, actor-embedded Items, world Items, or other compendiums is changed.** In v0.2.3, qualifying existing World Items have only their `img` field updated.
-
-## Install or upgrade
-
-1. Unzip `wod20-combat-library` directly under your Foundry `Data/modules` directory. If upgrading, replace that directory entirely.
-2. Restart Foundry, press **Ctrl+Shift+R** to hard-refresh the browser, and verify the module is enabled at **Game Settings > Manage Modules**.
-3. Back up the **Foundry world**, including the world Combat Library compendium, before updating v0.2.0.
-4. Log in as **GM**; approve **Create / Update WoD20 Combat Library** when prompted. The icon refresh also covers eligible matching World Items with or without source flags when they meet the strict folder/name/type checks; Actor-owned items are untouched.
-5. Open **Compendium Packs > WoD20 Combat Library**. Players should see a read-only collection with draggable Items.
-6. Test by dragging **Punch** (Natural Weapons) and **Hatchet** (Melee Weapons) onto a **controlled/unlocked** WoD20 Actor sheet. Confirm each appears under Combat and can roll an attack.
-7. If either fails, verify the character sheet is editable and the player owns the Actor. Capture any browser-console error: the offline tests cannot exercise live drag-and-drop.
-
-**Rollback:** Stop Foundry. Restore the previous `Z:\Data\modules\wod20-combat-library` folder **and a matching pre-upgrade world snapshot**. Restoring only the older module ZIP cannot undo in-world compendium Item type changes.
-
-For manual reinstallation/upgrades, the module API supports:
-
-```javascript
-game.modules.get("wod20-combat-library").api.install();
-```
-
-This displays the GM confirmation before doing anything.
-
-## Compatibility and limitations
-
-- WoD20 V7.3.x / Foundry VTT 13-14 schema fields checked against published template.json. Current module build and migration are only syntax/mock-tested; **live user-world drag/drop and item retyping are not verified**.
-- Existing character-owned copies do not change when master compendium content is updated (normal Foundry behavior).
-- This is reference and equipment catalog automation, not a full combat adjudicator.
-- Distinct book rows have separate Items, including a thrown variant for the knife and tomahawk.
-- The **Explosives chart** was not supplied; explosive blast/area rules must be handled by the Storyteller until that source is available.
-
-## Sources
-
-User-supplied excerpts from *Mage: The Ascension 20th Anniversary Edition*, pp. 422-430 and 448-453. Text is summarized and gameplay stats transcribed for personal use; not an official publication.
+Combat references are summaries of user-supplied *Mage: The Ascension 20th Anniversary Edition* excerpts. This is unofficial fan material. Permissions for broader redistribution of copyrighted rules text and any software licensing need maintainer review before an official public listing. No licensed TC Modern artwork, user worlds or credentials are distributed.

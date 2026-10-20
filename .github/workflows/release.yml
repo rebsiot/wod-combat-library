@@ -11,6 +11,7 @@ on:
       - 'CHANGELOG.md'
       - 'THIRD_PARTY_ICONS.md'
       - 'tests/**'
+      - 'docs/**'
       - '.github/workflows/release.yml'
   workflow_dispatch:
 permissions:
@@ -34,7 +35,7 @@ jobs:
           set -euo pipefail
           mkdir -p dist/wod20-combat-library/assets/icons
           cp module.json README.md CHANGELOG.md THIRD_PARTY_ICONS.md dist/wod20-combat-library/
-          cp -r scripts data tests dist/wod20-combat-library/
+          cp -r scripts data tests docs dist/wod20-combat-library/
           cp assets/icons/*.svg dist/wod20-combat-library/assets/icons/
           (cd dist && zip -qr ../wod20-combat-library.zip wod20-combat-library)
           unzip -t wod20-combat-library.zip >/dev/null
@@ -52,5 +53,5 @@ jobs:
             gh release create "$TAG" wod20-combat-library.zip \
               --target "$GITHUB_SHA" \
               --title "WoD20 Combat Library ${TAG}" \
-              --notes "Changes the Foundry Module Management display name to WoD20 Combat Library. Existing module ID, content, and world data are unchanged. After updating, use Ctrl+Shift+R in the Foundry browser. The renamed entry has not yet been verified in a live Foundry session."
+              --notes "New full-color Combat Library artwork (116 illustrations, 19 palettes) across all 142 Items; matching names and item data are preserved. GM-previewed World Item icon fixes remain opt-in. Live Foundry verification pending. See CHANGELOG.md."
           fi

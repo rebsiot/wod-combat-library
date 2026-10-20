@@ -1,11 +1,18 @@
 # Changelog
 
-## 0.2.5 — 2026-10-18
+## v0.2.6 — 2026-10-19
 
-- Shortened the name shown in Foundry Module Management to **WoD20 Combat Library**.
-- Kept the module ID `wod20-combat-library`, GitHub repository, manifest URL, and existing compendium/World Item data unchanged.
-- This display-only release does not initiate a new content migration for worlds already on content version 0.2.4. Previously pending content updates still require GM approval and a world backup.
-- Automated build/tests pending release; live Foundry display-name verification pending.
+- Recolored all 116 bundled Game-Icons silhouettes with 19 distinct category palettes; all 142 entries retain their recognizable icon shape, filename and item type. Colors are designed for readability at 32-48px in Foundry's Items and Compendium views.
+- Existing library/World/Actor Items that already point to a managed icon path show the new art after a hard refresh **without modifying their data**. Managed World Items that still have WoD20 or Foundry placeholder icons remain eligible for the existing GM-approved, previewed image-only refresh.
+- Kept the v0.2.5 Foundry display name, stable module ID, manifest, compendium/source keys, Item IDs, weapon stats, descriptions, and custom-art exclusions. No world Item mass import and no actor-owned Item writes.
+- Reorganized the public README around browse/drag-copy/use, permissions, screenshots, first-use instructions and limitations. Updated artwork attribution and reproducible archive packaging.
+- Automated tests: color SVG integrity, all 142 icon mappings, native weapon schema fixtures, protected compendium access, World Item matching/backup, ID preservation, repeat updates and custom-art exclusion. **Real Foundry v14 GM/player tests still needed**.
+- Upgrade: back up the world, Update All, then **Ctrl+Shift+R**; approve the GM preview if shown. Roll back module files and matching pre-upgrade world snapshot if in-world Item images were changed.
+
+## v0.2.5 — 2026-10-18
+
+- Shortened the name displayed by Foundry Module Management to **WoD20 Combat Library**. The installed module ID, repository name, manifest URL, and world data were unchanged.
+- Catalog content and the v0.2.4 GM update behavior were retained; live verification remained pending.
 
 
 ## 0.2.4 — 2026-10-15

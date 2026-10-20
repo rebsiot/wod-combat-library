@@ -2,7 +2,7 @@
 
 Game-Icons.net — https://game-icons.net/
 
-The following icons were adapted from the SVG collection provided by the user. Artwork is credited to the authors named below. Source collection: Creative Commons Attribution 3.0 (CC BY 3.0), except specific CC0 authors noted by the archive. Colors and metadata were modified for this module. The module source code has separate copyright/licensing considerations.
+The following icons were adapted from the SVG collection provided by the user. Artwork is credited to the authors named below. Source collection: Creative Commons Attribution 3.0 (CC BY 3.0), except specific CC0 authors noted by the archive. Colors, category gradients, highlights, borders and metadata were modified for this module. The original silhouettes remain attributed to their credited artists. The module source code has separate copyright/licensing considerations.
 
 - `game-01-delapouite-claws.svg` — Icon made by **delapouite** (`icons/ffffff/000000/1x1/delapouite/claws.svg`)
 - `game-01-delapouite-eye-target.svg` — Icon made by **delapouite** (`icons/ffffff/000000/1x1/delapouite/eye-target.svg`)
@@ -167,4 +167,3 @@ Please, include a mention "Icons made by {author}" in your derivative work.
 If you use them in one of your project, don't hesitate to drop a message to delapouite@gmail.com or ping @GameIcons on twitter.
 
 More info and icons available at https://game-icons.net
-
