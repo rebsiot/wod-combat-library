@@ -1,0 +1,7 @@
+# Approved reference sheet mapping — v0.2.8
+
+The user approved **WoD20 Combat Library Interface.png** as the overall icon reference and explicitly approved corrected **Throw** and **Joint Manipulation** previews. v0.2.7 already uses those two corrected action illustrations; v0.2.8 preserves them.
+
+The illustrative screenshot is a mockup with categories not present in this module. **No new Items, types or weapon data are introduced**. 63 additional existing catalog keys are assigned to 34 locally embedded illustrated thumbnail assets from the approved screenshot. The remaining entries retain the 0.2.7 mappings. See `data/icon-map.json` for the exact source-key mapping. Art native resolution is limited by the supplied contact sheet; image extraction does not recreate lost fine detail.
+
+The image paths of these 63 mapped Items change on the managed compendium update. Existing World Item copies require the existing GM-confirmed, backed-up icon-only refresh if their `img` is eligible. Actor-owned copies are not rewritten. Custom artwork remains protected. If a World Item still has a default WoD20 image and is not recognized by the conservative matcher, keep it untouched and report its path/folder rather than reimporting.

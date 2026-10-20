@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.8 — 2026-10-20
+
+- Completed the approved **full-sheet art pass** for actual Combat Library entries. 34 additional illustrated reference-sheet designs now serve 63 existing catalog entries, primarily weapons, firearms, natural attacks, combat tactics and training. Earlier v0.2.7 corrected Throw and Joint Lock imagery remains unchanged.
+- Kept the 142-entry catalog and all native WoD20 mechanics. The approved mockup's armor, ammunition, shields and standalone martial-style examples are not part of this catalog and were not added.
+- New portrait SVGs contain local embedded JPEGs; all assets are packaged for offline use. Original Game-Icons.net credits retained, with attribution separated from approved generated portraits.
+- Reused the existing GM-previewed **icon-only** compendium/World Item migration; no Actor item writes, custom artwork replacement, bulk imports or Item data schema changes.
+- Automated/mocked tests and package validation passed; live Foundry 14 verification pending.
+
+
 ## 0.2.7 — 2026-10-20
 
 - Replaced selected combat-maneuver icons with the approved realistic, blue-framed portraits: Head Butt, kicks, punches, Joint Lock, Elbow/Knee Strike, Low Blow (groin strike), Body Slam, throws, disarms and grapples. Ten individual illustrations are used by 22 mapped catalog entries.

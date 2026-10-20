@@ -1,10 +1,13 @@
-# WoD20 Combat Library v0.2.7 — Illustrated combat actions
+# WoD20 Combat Library v0.2.8 — Approved illustrated equipment and combat icons
 
-Selected combat maneuvers now show the approved realistic, blue-framed pictures instead of the earlier flat vector icons. Head Butt, kicks, punches, Low Blow, Body Slam, throws, Joint Lock, grapples and disarms are included. The anatomically corrected Throw and Joint Lock art is used. The remaining library icons stay as v0.2.6 colored silhouettes.
+The full approved icon sheet now informs the matching weapons, combat and training entries. **63 additional existing Items** receive detailed images drawn from 34 approved concepts; the corrected **Throw** and **Joint Lock** art from v0.2.7 remains unchanged. All 142 catalog entries retain their Item data and game mechanics.
 
-- **Before updating:** Save a recoverable world backup. Update via Foundry Setup > Add-on Modules > Update All, restart as needed, and hard-refresh with **Ctrl+Shift+R**.
-- **World Items:** GM approval previews eligible icon changes and skips custom artwork. Never delete or bulk re-import the Items for this artwork update. Actor-owned documents are not rewritten.
-- **Preserved:** Module ID, 142-entry catalog, Item types, IDs, system stats, descriptions, folders and compendium permissions.
-- **Rollback:** Install v0.2.6 code; if any World Item paths were updated, restore the matching world backup. Restoring code alone does not undo a migration.
-- **Testing:** automated/mock suite, image validity and ZIP integrity. **Live Foundry verification pending.**
-- **Limitations:** No new mechanics; Feature-only references remain Features. The other colored icons are intentionally not replaced yet.
+**Before updating:** Back up your world separately from the installed module. In Foundry Setup select **Add-on Modules → Update All**. Restart if necessary, hard-refresh **Ctrl+Shift+R** and review the GM library-update preview before approval.
+
+**Preserved:** Same module ID and compendium, protected masters, IDs, types, names, descriptions, flags, stats, folders and custom artwork. This is not an equipment import or actor-data migration. World Item icon paths are updated only for verified eligible matches; Actor-owned Items are not changed.
+
+**Rollback:** Restore v0.2.7 software. If World Item `img` fields were updated, restore the corresponding world-data snapshot as well.
+
+**Not in the module:** Standalone Armor, Shields, Ammunition or martial-style class Items shown in the visual reference. Existing reference-only `Feature` mechanics remain unchanged.
+
+**Testing:** Automated mocked validation and installation ZIP checks passed. The actual Foundry v14 GM update and player browse/drag-copy flow is **not yet live-tested**.

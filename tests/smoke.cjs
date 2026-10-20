@@ -5,11 +5,12 @@ const weapons=JSON.parse(fs.readFileSync(path.join(ROOT,'data/weapons.json'),'ut
 const icons=JSON.parse(fs.readFileSync(path.join(ROOT,'data/icon-map.json'),'utf8'));
 assert.equal(moves.entries.length,49);assert.equal(weapons.entries.length,82);
 const manifest=JSON.parse(fs.readFileSync(path.join(ROOT,'module.json'),'utf8'));
-assert.equal(manifest.title,'WoD20 Combat Library');assert.equal(manifest.version,'0.2.7');
+assert.equal(manifest.title,'WoD20 Combat Library');assert.equal(manifest.version,'0.2.8');
 assert.equal(manifest.id,MOD);
-assert.equal(fs.readdirSync(path.join(ROOT,'assets/icons')).filter(x=>x.endsWith('.svg')).length,117);
+assert.equal(fs.readdirSync(path.join(ROOT,'assets/icons')).filter(x=>x.endsWith('.svg')).length,151);
 const uniq=new Set([...moves.entries,...weapons.entries].map(e=>e.key));assert.equal(uniq.size,131);
 assert.equal(Object.keys(icons.icons).length,142);
+assert.ok(Object.values(icons.icons).filter(x=>x.startsWith('portrait-sheet-')).length>=50, 'Approved sheet portraits missing');
 assert.ok(new Set(Object.values(icons.icons)).size>=90);
 for(const icon of Object.values(icons.icons)){
  const svg=fs.readFileSync(path.join(ROOT,'assets/icons',icon+'.svg'),'utf8');
@@ -17,7 +18,7 @@ for(const icon of Object.values(icons.icons)){
  assert.ok(!/<script|<foreignObject|onload=|href="https?:\/\//i.test(svg));
  if (svg.includes('<image')) {
   const match=svg.match(/href="data:image\/jpeg;base64,([A-Za-z0-9+/=]+)"/);
-  assert.ok(match,icon+' portrait must contain only a local embedded PNG');
+  assert.ok(match,icon+' portrait must contain only a local embedded JPEG');
   const png=Buffer.from(match[1],'base64');assert.equal(png.subarray(0,3).toString('hex'),'ffd8ff');
  } else {assert.match(svg,/linearGradient id="bg"/);assert.match(svg,/linearGradient id="steel"/);}
 }
@@ -80,9 +81,9 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
   assert.equal(a.system.difficulty,difficulty);
  }
  assert.ok(p.docs.find(x=>x.name==='Bite').system.description.includes('Editable weapon default'));
- assert.ok(p.docs.find(x=>x.name==='Blinding').img.includes('blindfold.svg'));
- assert.ok(p.docs.find(x=>x.name==='Iron Shirt').img.includes('energy-shield.svg'));
- assert.ok(p.docs.find(x=>x.name==='Katana').img.includes('katana.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Blinding').img.includes('portrait-sheet-eye-gouge.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Iron Shirt').img.includes('portrait-sheet-akashic-do.svg'));
+ assert.ok(p.docs.find(x=>x.name==='Katana').img.includes('portrait-sheet-katana.svg'));
  assert.ok(p.docs.find(x=>x.name==='Flamethrower').img.includes('flamethrower.svg'));
  assert.equal(p.docs.find(x=>x.name==='Bolan Mk. 13 Weapons System').type,'Feature');
  assert.equal(p.docs.find(x=>x.name==='Flamethrower').type,'Feature');
@@ -159,7 +160,7 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
  assert.equal(p.docs.find(x=>x.name==='Sword').img,'custom/user-sword.webp');
  assert.equal(p.docs.find(x=>x.name==='Read an Opponent').system.description,'Storyteller custom notes');
  for(const item of p.docs){
-   assert.equal(item.flags[MOD].version,'0.2.7');
+   assert.equal(item.flags[MOD].version,'0.2.8');
    assert.equal(item.type,beforeIcons.get(item.id).type);
    assert.equal(item.name,beforeIcons.get(item.id).name);
    assert.equal(item.folder,beforeIcons.get(item.id).folder);
@@ -169,7 +170,7 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
  assert.equal(unrelated.img,'icons/svg/book.svg');
  assert.equal(unrelated.system.description,'User item');
  assert.equal(worldItems.length,13);
- assert.ok(worldNoFlag.img.includes('katana.svg'));
+ assert.ok(worldNoFlag.img.includes('portrait-sheet-katana.svg'));
  assert.ok(nativeFeature.img.includes('game-01-'));
  assert.ok(nativeMelee.img.endsWith('.svg') && nativeMelee.img.startsWith('modules/'));
  assert.equal(nativeFeature.system.description,'Preserve me');
@@ -193,7 +194,7 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
  await api().install();
  assert.equal(legacy.id,legacyID);
  assert.equal(legacy.system.description,'Locally customized weapon');
- assert.ok(legacy.img.includes('hatchet.svg'));
+ assert.ok(legacy.img.includes('portrait-sheet-fire-axe.svg'));
  // 0.2.0 created Punch, Kick, Bite and Claw as Features. Upgrading must preserve IDs,
  // create fully native weapons, and retain a world-side backup snapshot.
  const oldIds=new Map();
@@ -209,18 +210,18 @@ async function run(){hooks.init();await hooks.ready();const p=packs.get('world.'
    assert.equal(updated.system.isnatural,true);
  }
  const backup=JSON.parse(states.get(MOD+'.typeMigrationBackup'));
- assert.equal(backup.toVersion,'0.2.7');assert.equal(backup.items.length,4);
+ assert.equal(backup.toVersion,'0.2.8');assert.equal(backup.items.length,4);
  assert.ok(backup.items.every(x=>x.type==='Feature'));
 
  // Exercise the upgrade path from 0.1.0 with existing 49 move records and an unlocked pack.
  p.docs=p.docs.filter(x=>moves.entries.some(e=>e.key===x.getFlag(MOD,'key')));
  for(const x of p.docs)x.flags[MOD].version='0.1.0';
  p.locked=false;await api().install();assert.equal(p.docs.length,142);assert.equal(p.locked,false);
- for(const x of p.docs)assert.equal(x.flags[MOD].version,'0.2.7');
+ for(const x of p.docs)assert.equal(x.flags[MOD].version,'0.2.8');
  // Refuse to expose unrelated packs before setting role permissions.
  const old=copy(p.ownership);p.docs.push(doc({name:'Secret',flags:{},ownership:{default:0}}));
  let rejected=false;try{await api().install()}catch(e){rejected=true;assert.ok(e.message.includes('not managed'))}
  assert.equal(rejected,true);assert.deepEqual(p.ownership,old);
- console.log('PASS: v0.2.7 142 entries; WoD20 default Feature and weapon icon migration; ID-referenced nested folders; custom art preserved; full compendium/icon regression; actor copies unchanged; repeat-safe updates.');
+ console.log('PASS: v0.2.8 142 entries; WoD20 default Feature and weapon icon migration; ID-referenced nested folders; custom art preserved; full compendium/icon regression; actor copies unchanged; repeat-safe updates.');
 }
 run().catch(e=>{console.error(e);process.exit(1)});

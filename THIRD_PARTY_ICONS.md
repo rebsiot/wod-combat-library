@@ -1,4 +1,10 @@
-# Third-party icon attribution
+# Asset provenance and third-party artwork
+
+## Approved illustrated portraits (v0.2.7–v0.2.8)
+
+`portrait-sheet-*.svg` uses locally embedded raster crops of the **user-approved AI-generated WoD20 Combat Library reference sheet** supplied in the project conversation. They are original generated reference-sheet imagery, **not** sourced from Game-Icons.net and do not inherit that collection's licenses. The corrected Throw and Joint Lock portraits are carried over from the separately approved combat-action preview. The reference sheet is an illustration mockup and contains examples outside this module's actual Item catalog.
+
+## Game-Icons.net illustrations retained in the library
 
 Game-Icons.net — https://game-icons.net/
 
