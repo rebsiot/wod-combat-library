@@ -12,7 +12,7 @@ Browse the **WoD20 Combat Library** compendium, drag a **copy** of a weapon or m
 - **Akashic Do** — specialized techniques and training reference, without invented rules automation.
 - **Reference material** — weapons, concealment, attack and reload notes.
 
-The catalog contains **142 existing Items**. v0.2.8 applies 34 full-color concepts from the approved equipment/combat reference sheet to **63 matching catalog entries**; the corrected **Throw** and **Joint Lock** portraits and the earlier illustrated action set remain. Other entries retain v0.2.7 art. The mockup also shows armor, shields, ammunition and martial-style examples that **are not Items in this module**; they have not been invented or imported.
+The catalog contains **142 existing Items**. v0.2.9 expands the approved art pass again. It now applies **41** full-color concepts from the approved equipment/combat reference sheet to **74 matching catalog entries**, plus several direct icon swaps to more fitting Game-Icons art. This cleanup pass improves a number of general maneuvers, dirty-fighting entries, martial-arts techniques and Do references without changing Item data or mechanics. The mockup also shows armor, shields, ammunition and martial-style examples that **are not Items in this module**; they have not been invented or imported.
 
 ## Requirements
 
@@ -30,7 +30,7 @@ Foundry VTT 13–14 with the `worldofdarkness` WoD20 system. Exact real-world Fo
 
 Compendium Items and World Items are distinct documents. The GM-approved preview identifies eligible existing World Items, already-current icons, and protected custom images. For eligible Items, the module changes **only `img`**, backing up old image paths and preserving Item IDs, types, flags, stats, names, folders and text. **No mass import** takes place. Actor-owned Items are not migrated; copies still pointing to older icon paths retain their previous art unless the underlying image file itself changed.
 
-Back up both the installed module and **world data** before approving a migration. To roll back code, reinstall v0.2.7. If the update changed world Item image paths, restore the matching world snapshot; restoring module code alone does not undo persistent icon-path edits. If the GM update preview unexpectedly shows zero eligible entries, do not delete or mass-reimport your Items.
+Back up both the installed module and **world data** before approving a migration. To roll back code, reinstall v0.2.8. If the update changed world Item image paths, restore the matching world snapshot; restoring module code alone does not undo persistent icon-path edits. If the GM update preview unexpectedly shows zero eligible entries, do not delete or mass-reimport your Items.
 
 ## Limitations and testing
 
@@ -43,4 +43,4 @@ Back up both the installed module and **world data** before approving a migratio
 
 [Issues](https://github.com/rebsiot/wod-combat-library/issues) · [Releases](https://github.com/rebsiot/wod-combat-library/releases) · [Changelog](CHANGELOG.md) · [Icon credits](THIRD_PARTY_ICONS.md)
 
-The v0.2.8 portraits come from the user-approved AI-generated Combat Library reference sheet. Remaining Game-Icons.net illustrations use their recorded artist attributions and respective CC BY 3.0/CC0 terms. This is an unofficial World of Darkness fan tool; permission to redistribute substantial rules text or list the package officially must be reviewed separately. No TC Modern creator content, credentials or player data are included.
+The v0.2.9 portraits come from the user-approved AI-generated Combat Library reference sheet. Remaining Game-Icons.net illustrations use their recorded artist attributions and respective CC BY 3.0/CC0 terms. This is an unofficial World of Darkness fan tool; permission to redistribute substantial rules text or list the package officially must be reviewed separately. No TC Modern creator content, credentials or player data are included.

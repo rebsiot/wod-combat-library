@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.9 — 2026-10-20
+
+- Ran a focused cleanup art pass on the user-flagged maneuver folders. Additional existing entries now use approved screenshot portraits for **Body Slam, Head Butt, Low Blow, Tackle, the Throw family, Disarm, Elbow / Knee Strike, Iron Shirt, Soft Fist, Do training references**, and other close matches.
+- Replaced a few misleading placeholders with more fitting images, including **Read an Opponent** (eye/assessment), **Ten Thousand Weapons** (weapon array) and **The Peaceful Way** (lotus).
+- No new Items, folders or rules text were added. The catalog remains **142 Items** and the GM world-icon refresh still changes only eligible module-managed World Items.
+
 ## 0.2.8 — 2026-10-20
 
 - Completed the approved **full-sheet art pass** for actual Combat Library entries. 34 additional illustrated reference-sheet designs now serve 63 existing catalog entries, primarily weapons, firearms, natural attacks, combat tactics and training. Earlier v0.2.7 corrected Throw and Joint Lock imagery remains unchanged.

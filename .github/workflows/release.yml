@@ -9,6 +9,7 @@ on:
       - 'assets/**'
       - 'README.md'
       - 'CHANGELOG.md'
+      - 'RELEASE-NOTES.md'
       - 'THIRD_PARTY_ICONS.md'
       - 'tests/**'
       - 'docs/**'
@@ -53,5 +54,5 @@ jobs:
             gh release create "$TAG" wod20-combat-library.zip \
               --target "$GITHUB_SHA" \
               --title "WoD20 Combat Library ${TAG}" \
-              --notes "Completes the approved Combat Library artwork sheet for matching existing Items: 63 additional catalog entries now use 34 illustrated concepts. Corrected Throw and Joint Lock art remains. Back up world data, Update All, hard-refresh Ctrl+Shift+R, and review the GM icon preview. No Item statistics or custom art replaced; live Foundry validation pending."
+              --notes "Improves 23 Combat Library icon mappings in General Maneuvers, Dirty Fighting, Martial Arts, Do special techniques and training references. Preserves all 142 Item entries, IDs, mechanics and custom artwork. Back up your world, Update All, Ctrl+Shift+R, and approve the GM icon update. Real Foundry v14 verification pending."
           fi

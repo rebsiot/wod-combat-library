@@ -2,7 +2,7 @@
   "id": "wod20-combat-library",
   "title": "WoD20 Combat Library",
   "description": "Player-readable Foundry Item compendium: weapons, combat maneuvers, dirty fighting, Martial Arts, and Akashic Do. Independent of Mage Charamancer starter equipment.",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "authors": [
     {
       "name": "M20 Player Tools"
